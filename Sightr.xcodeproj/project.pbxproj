@@ -1,0 +1,524 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		852CFB921CC3B96300C79779 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852CFB911CC3B96300C79779 /* AppDelegate.swift */; };
+		852CFB941CC3B96300C79779 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852CFB931CC3B96300C79779 /* ViewController.swift */; };
+		852CFB971CC3B96300C79779 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852CFB951CC3B96300C79779 /* Main.storyboard */; };
+		852CFB9A1CC3B96300C79779 /* Sightr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 852CFB981CC3B96300C79779 /* Sightr.xcdatamodeld */; };
+		852CFB9C1CC3B96300C79779 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 852CFB9B1CC3B96300C79779 /* Assets.xcassets */; };
+		852CFB9F1CC3B96300C79779 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852CFB9D1CC3B96300C79779 /* LaunchScreen.storyboard */; };
+		852CFBAA1CC3B96300C79779 /* SightrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852CFBA91CC3B96300C79779 /* SightrTests.swift */; };
+		852CFBB51CC3B96300C79779 /* SightrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852CFBB41CC3B96300C79779 /* SightrUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		852CFBA61CC3B96300C79779 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 852CFB861CC3B96300C79779 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 852CFB8D1CC3B96300C79779;
+			remoteInfo = Sightr;
+		};
+		852CFBB11CC3B96300C79779 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 852CFB861CC3B96300C79779 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 852CFB8D1CC3B96300C79779;
+			remoteInfo = Sightr;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		852CFB8E1CC3B96300C79779 /* Sightr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sightr.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		852CFB911CC3B96300C79779 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		852CFB931CC3B96300C79779 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		852CFB961CC3B96300C79779 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		852CFB991CC3B96300C79779 /* Sightr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sightr.xcdatamodel; sourceTree = "<group>"; };
+		852CFB9B1CC3B96300C79779 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		852CFB9E1CC3B96300C79779 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		852CFBA01CC3B96300C79779 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		852CFBA51CC3B96300C79779 /* SightrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SightrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		852CFBA91CC3B96300C79779 /* SightrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightrTests.swift; sourceTree = "<group>"; };
+		852CFBAB1CC3B96300C79779 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		852CFBB01CC3B96300C79779 /* SightrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SightrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		852CFBB41CC3B96300C79779 /* SightrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightrUITests.swift; sourceTree = "<group>"; };
+		852CFBB61CC3B96300C79779 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		852CFB8B1CC3B96300C79779 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		852CFBA21CC3B96300C79779 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		852CFBAD1CC3B96300C79779 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		852CFB851CC3B96300C79779 = {
+			isa = PBXGroup;
+			children = (
+				852CFB901CC3B96300C79779 /* Sightr */,
+				852CFBA81CC3B96300C79779 /* SightrTests */,
+				852CFBB31CC3B96300C79779 /* SightrUITests */,
+				852CFB8F1CC3B96300C79779 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		852CFB8F1CC3B96300C79779 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				852CFB8E1CC3B96300C79779 /* Sightr.app */,
+				852CFBA51CC3B96300C79779 /* SightrTests.xctest */,
+				852CFBB01CC3B96300C79779 /* SightrUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		852CFB901CC3B96300C79779 /* Sightr */ = {
+			isa = PBXGroup;
+			children = (
+				852CFB911CC3B96300C79779 /* AppDelegate.swift */,
+				852CFB931CC3B96300C79779 /* ViewController.swift */,
+				852CFB951CC3B96300C79779 /* Main.storyboard */,
+				852CFB9B1CC3B96300C79779 /* Assets.xcassets */,
+				852CFB9D1CC3B96300C79779 /* LaunchScreen.storyboard */,
+				852CFBA01CC3B96300C79779 /* Info.plist */,
+				852CFB981CC3B96300C79779 /* Sightr.xcdatamodeld */,
+			);
+			path = Sightr;
+			sourceTree = "<group>";
+		};
+		852CFBA81CC3B96300C79779 /* SightrTests */ = {
+			isa = PBXGroup;
+			children = (
+				852CFBA91CC3B96300C79779 /* SightrTests.swift */,
+				852CFBAB1CC3B96300C79779 /* Info.plist */,
+			);
+			path = SightrTests;
+			sourceTree = "<group>";
+		};
+		852CFBB31CC3B96300C79779 /* SightrUITests */ = {
+			isa = PBXGroup;
+			children = (
+				852CFBB41CC3B96300C79779 /* SightrUITests.swift */,
+				852CFBB61CC3B96300C79779 /* Info.plist */,
+			);
+			path = SightrUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		852CFB8D1CC3B96300C79779 /* Sightr */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 852CFBB91CC3B96300C79779 /* Build configuration list for PBXNativeTarget "Sightr" */;
+			buildPhases = (
+				852CFB8A1CC3B96300C79779 /* Sources */,
+				852CFB8B1CC3B96300C79779 /* Frameworks */,
+				852CFB8C1CC3B96300C79779 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Sightr;
+			productName = Sightr;
+			productReference = 852CFB8E1CC3B96300C79779 /* Sightr.app */;
+			productType = "com.apple.product-type.application";
+		};
+		852CFBA41CC3B96300C79779 /* SightrTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 852CFBBC1CC3B96300C79779 /* Build configuration list for PBXNativeTarget "SightrTests" */;
+			buildPhases = (
+				852CFBA11CC3B96300C79779 /* Sources */,
+				852CFBA21CC3B96300C79779 /* Frameworks */,
+				852CFBA31CC3B96300C79779 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				852CFBA71CC3B96300C79779 /* PBXTargetDependency */,
+			);
+			name = SightrTests;
+			productName = SightrTests;
+			productReference = 852CFBA51CC3B96300C79779 /* SightrTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		852CFBAF1CC3B96300C79779 /* SightrUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 852CFBBF1CC3B96300C79779 /* Build configuration list for PBXNativeTarget "SightrUITests" */;
+			buildPhases = (
+				852CFBAC1CC3B96300C79779 /* Sources */,
+				852CFBAD1CC3B96300C79779 /* Frameworks */,
+				852CFBAE1CC3B96300C79779 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				852CFBB21CC3B96300C79779 /* PBXTargetDependency */,
+			);
+			name = SightrUITests;
+			productName = SightrUITests;
+			productReference = 852CFBB01CC3B96300C79779 /* SightrUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		852CFB861CC3B96300C79779 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Almin Hosic";
+				TargetAttributes = {
+					852CFB8D1CC3B96300C79779 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					852CFBA41CC3B96300C79779 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 852CFB8D1CC3B96300C79779;
+					};
+					852CFBAF1CC3B96300C79779 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 852CFB8D1CC3B96300C79779;
+					};
+				};
+			};
+			buildConfigurationList = 852CFB891CC3B96300C79779 /* Build configuration list for PBXProject "Sightr" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 852CFB851CC3B96300C79779;
+			productRefGroup = 852CFB8F1CC3B96300C79779 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				852CFB8D1CC3B96300C79779 /* Sightr */,
+				852CFBA41CC3B96300C79779 /* SightrTests */,
+				852CFBAF1CC3B96300C79779 /* SightrUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		852CFB8C1CC3B96300C79779 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				852CFB9F1CC3B96300C79779 /* LaunchScreen.storyboard in Resources */,
+				852CFB9C1CC3B96300C79779 /* Assets.xcassets in Resources */,
+				852CFB971CC3B96300C79779 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		852CFBA31CC3B96300C79779 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		852CFBAE1CC3B96300C79779 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		852CFB8A1CC3B96300C79779 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				852CFB941CC3B96300C79779 /* ViewController.swift in Sources */,
+				852CFB9A1CC3B96300C79779 /* Sightr.xcdatamodeld in Sources */,
+				852CFB921CC3B96300C79779 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		852CFBA11CC3B96300C79779 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				852CFBAA1CC3B96300C79779 /* SightrTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		852CFBAC1CC3B96300C79779 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				852CFBB51CC3B96300C79779 /* SightrUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		852CFBA71CC3B96300C79779 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 852CFB8D1CC3B96300C79779 /* Sightr */;
+			targetProxy = 852CFBA61CC3B96300C79779 /* PBXContainerItemProxy */;
+		};
+		852CFBB21CC3B96300C79779 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 852CFB8D1CC3B96300C79779 /* Sightr */;
+			targetProxy = 852CFBB11CC3B96300C79779 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		852CFB951CC3B96300C79779 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				852CFB961CC3B96300C79779 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		852CFB9D1CC3B96300C79779 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				852CFB9E1CC3B96300C79779 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		852CFBB71CC3B96300C79779 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		852CFBB81CC3B96300C79779 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		852CFBBA1CC3B96300C79779 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Sightr/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = at.fhooe.mc.hosic.Sightr;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		852CFBBB1CC3B96300C79779 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Sightr/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = at.fhooe.mc.hosic.Sightr;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		852CFBBD1CC3B96300C79779 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SightrTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = at.fhooe.mc.hosic.SightrTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sightr.app/Sightr";
+			};
+			name = Debug;
+		};
+		852CFBBE1CC3B96300C79779 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SightrTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = at.fhooe.mc.hosic.SightrTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sightr.app/Sightr";
+			};
+			name = Release;
+		};
+		852CFBC01CC3B96300C79779 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SightrUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = at.fhooe.mc.hosic.SightrUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Sightr;
+			};
+			name = Debug;
+		};
+		852CFBC11CC3B96300C79779 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SightrUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = at.fhooe.mc.hosic.SightrUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Sightr;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		852CFB891CC3B96300C79779 /* Build configuration list for PBXProject "Sightr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				852CFBB71CC3B96300C79779 /* Debug */,
+				852CFBB81CC3B96300C79779 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		852CFBB91CC3B96300C79779 /* Build configuration list for PBXNativeTarget "Sightr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				852CFBBA1CC3B96300C79779 /* Debug */,
+				852CFBBB1CC3B96300C79779 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		852CFBBC1CC3B96300C79779 /* Build configuration list for PBXNativeTarget "SightrTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				852CFBBD1CC3B96300C79779 /* Debug */,
+				852CFBBE1CC3B96300C79779 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		852CFBBF1CC3B96300C79779 /* Build configuration list for PBXNativeTarget "SightrUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				852CFBC01CC3B96300C79779 /* Debug */,
+				852CFBC11CC3B96300C79779 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		852CFB981CC3B96300C79779 /* Sightr.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				852CFB991CC3B96300C79779 /* Sightr.xcdatamodel */,
+			);
+			currentVersion = 852CFB991CC3B96300C79779 /* Sightr.xcdatamodel */;
+			path = Sightr.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 852CFB861CC3B96300C79779 /* Project object */;
+}
