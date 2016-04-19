@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8518641F1CC620E700C74F62 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518641E1CC620E700C74F62 /* Guide.swift */; };
 		852CFB921CC3B96300C79779 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852CFB911CC3B96300C79779 /* AppDelegate.swift */; };
-		852CFB941CC3B96300C79779 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852CFB931CC3B96300C79779 /* ViewController.swift */; };
 		852CFB971CC3B96300C79779 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852CFB951CC3B96300C79779 /* Main.storyboard */; };
 		852CFB9A1CC3B96300C79779 /* Sightr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 852CFB981CC3B96300C79779 /* Sightr.xcdatamodeld */; };
 		852CFB9C1CC3B96300C79779 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 852CFB9B1CC3B96300C79779 /* Assets.xcassets */; };
 		852CFB9F1CC3B96300C79779 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852CFB9D1CC3B96300C79779 /* LaunchScreen.storyboard */; };
 		852CFBAA1CC3B96300C79779 /* SightrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852CFBA91CC3B96300C79779 /* SightrTests.swift */; };
 		852CFBB51CC3B96300C79779 /* SightrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852CFBB41CC3B96300C79779 /* SightrUITests.swift */; };
+		852CFBC41CC3F68A00C79779 /* GuidesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852CFBC31CC3F68A00C79779 /* GuidesVC.swift */; };
+		852CFBC71CC4024600C79779 /* Geometria_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 852CFBC61CC4024600C79779 /* Geometria_Light.otf */; };
+		859F65671CC4EBC3001908B0 /* GuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F65661CC4EBC3001908B0 /* GuideCell.swift */; };
+		859F656A1CC4ED4B001908B0 /* SightrModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F65691CC4ED4B001908B0 /* SightrModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8518641E1CC620E700C74F62 /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		852CFB8E1CC3B96300C79779 /* Sightr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sightr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		852CFB911CC3B96300C79779 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		852CFB931CC3B96300C79779 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		852CFB961CC3B96300C79779 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		852CFB991CC3B96300C79779 /* Sightr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sightr.xcdatamodel; sourceTree = "<group>"; };
 		852CFB9B1CC3B96300C79779 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +53,10 @@
 		852CFBB01CC3B96300C79779 /* SightrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SightrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		852CFBB41CC3B96300C79779 /* SightrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightrUITests.swift; sourceTree = "<group>"; };
 		852CFBB61CC3B96300C79779 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		852CFBC31CC3F68A00C79779 /* GuidesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidesVC.swift; sourceTree = "<group>"; };
+		852CFBC61CC4024600C79779 /* Geometria_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Geometria_Light.otf; sourceTree = "<group>"; };
+		859F65661CC4EBC3001908B0 /* GuideCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideCell.swift; sourceTree = "<group>"; };
+		859F65691CC4ED4B001908B0 /* SightrModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightrModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +107,11 @@
 		852CFB901CC3B96300C79779 /* Sightr */ = {
 			isa = PBXGroup;
 			children = (
+				859F65681CC4ED20001908B0 /* Model */,
+				859F65651CC4EBA6001908B0 /* Cells */,
+				852CFBC51CC401F300C79779 /* Ressources */,
+				852CFBC21CC3F64300C79779 /* ViewController */,
 				852CFB911CC3B96300C79779 /* AppDelegate.swift */,
-				852CFB931CC3B96300C79779 /* ViewController.swift */,
 				852CFB951CC3B96300C79779 /* Main.storyboard */,
 				852CFB9B1CC3B96300C79779 /* Assets.xcassets */,
 				852CFB9D1CC3B96300C79779 /* LaunchScreen.storyboard */,
@@ -126,6 +137,39 @@
 				852CFBB61CC3B96300C79779 /* Info.plist */,
 			);
 			path = SightrUITests;
+			sourceTree = "<group>";
+		};
+		852CFBC21CC3F64300C79779 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				852CFBC31CC3F68A00C79779 /* GuidesVC.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		852CFBC51CC401F300C79779 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				852CFBC61CC4024600C79779 /* Geometria_Light.otf */,
+			);
+			name = Ressources;
+			sourceTree = "<group>";
+		};
+		859F65651CC4EBA6001908B0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				859F65661CC4EBC3001908B0 /* GuideCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		859F65681CC4ED20001908B0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				859F65691CC4ED4B001908B0 /* SightrModel.swift */,
+				8518641E1CC620E700C74F62 /* Guide.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +278,7 @@
 			files = (
 				852CFB9F1CC3B96300C79779 /* LaunchScreen.storyboard in Resources */,
 				852CFB9C1CC3B96300C79779 /* Assets.xcassets in Resources */,
+				852CFBC71CC4024600C79779 /* Geometria_Light.otf in Resources */,
 				852CFB971CC3B96300C79779 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,9 +304,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				852CFB941CC3B96300C79779 /* ViewController.swift in Sources */,
+				8518641F1CC620E700C74F62 /* Guide.swift in Sources */,
+				859F65671CC4EBC3001908B0 /* GuideCell.swift in Sources */,
+				852CFBC41CC3F68A00C79779 /* GuidesVC.swift in Sources */,
 				852CFB9A1CC3B96300C79779 /* Sightr.xcdatamodeld in Sources */,
 				852CFB921CC3B96300C79779 /* AppDelegate.swift in Sources */,
+				859F656A1CC4ED4B001908B0 /* SightrModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +536,7 @@
 				852CFBBB1CC3B96300C79779 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		852CFBBC1CC3B96300C79779 /* Build configuration list for PBXNativeTarget "SightrTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +545,7 @@
 				852CFBBE1CC3B96300C79779 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		852CFBBF1CC3B96300C79779 /* Build configuration list for PBXNativeTarget "SightrUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +554,7 @@
 				852CFBC11CC3B96300C79779 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
