@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		850E690B1CC8FF920084F2C4 /* GuideMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850E690A1CC8FF920084F2C4 /* GuideMapVC.swift */; };
 		8518641F1CC620E700C74F62 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518641E1CC620E700C74F62 /* Guide.swift */; };
+		851864211CC63B3A00C74F62 /* GuideDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851864201CC63B3A00C74F62 /* GuideDetailsVC.swift */; };
+		85298F641CC9234D006DBE11 /* GuidePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85298F631CC9234D006DBE11 /* GuidePoint.swift */; };
+		85298F661CC92A8F006DBE11 /* GuidePointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85298F651CC92A8F006DBE11 /* GuidePointCell.swift */; };
+		85298F681CC92FC7006DBE11 /* AddPointVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85298F671CC92FC7006DBE11 /* AddPointVC.swift */; };
 		852CFB921CC3B96300C79779 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852CFB911CC3B96300C79779 /* AppDelegate.swift */; };
 		852CFB971CC3B96300C79779 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852CFB951CC3B96300C79779 /* Main.storyboard */; };
 		852CFB9A1CC3B96300C79779 /* Sightr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 852CFB981CC3B96300C79779 /* Sightr.xcdatamodeld */; };
@@ -19,6 +24,7 @@
 		852CFBC71CC4024600C79779 /* Geometria_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 852CFBC61CC4024600C79779 /* Geometria_Light.otf */; };
 		859F65671CC4EBC3001908B0 /* GuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F65661CC4EBC3001908B0 /* GuideCell.swift */; };
 		859F656A1CC4ED4B001908B0 /* SightrModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F65691CC4ED4B001908B0 /* SightrModel.swift */; };
+		E9D24A4F0CD57ECFE336EA3C /* Pods_Sightr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B11C144631148E021A1D4A18 /* Pods_Sightr.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +45,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		67452073B6D86F617F24A444 /* Pods-Sightr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sightr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sightr/Pods-Sightr.release.xcconfig"; sourceTree = "<group>"; };
+		850E690A1CC8FF920084F2C4 /* GuideMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideMapVC.swift; sourceTree = "<group>"; };
 		8518641E1CC620E700C74F62 /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
+		851864201CC63B3A00C74F62 /* GuideDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideDetailsVC.swift; sourceTree = "<group>"; };
+		85298F631CC9234D006DBE11 /* GuidePoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidePoint.swift; sourceTree = "<group>"; };
+		85298F651CC92A8F006DBE11 /* GuidePointCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidePointCell.swift; sourceTree = "<group>"; };
+		85298F671CC92FC7006DBE11 /* AddPointVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPointVC.swift; sourceTree = "<group>"; };
 		852CFB8E1CC3B96300C79779 /* Sightr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sightr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		852CFB911CC3B96300C79779 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		852CFB961CC3B96300C79779 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -57,6 +69,8 @@
 		852CFBC61CC4024600C79779 /* Geometria_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Geometria_Light.otf; sourceTree = "<group>"; };
 		859F65661CC4EBC3001908B0 /* GuideCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideCell.swift; sourceTree = "<group>"; };
 		859F65691CC4ED4B001908B0 /* SightrModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightrModel.swift; sourceTree = "<group>"; };
+		B11C144631148E021A1D4A18 /* Pods_Sightr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sightr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B46FAA5002C97F441883DDB5 /* Pods-Sightr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sightr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sightr/Pods-Sightr.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9D24A4F0CD57ECFE336EA3C /* Pods_Sightr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +99,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0097B862578E94EA9F084D31 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B46FAA5002C97F441883DDB5 /* Pods-Sightr.debug.xcconfig */,
+				67452073B6D86F617F24A444 /* Pods-Sightr.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		78F52ECA01B25EE514C4B0CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B11C144631148E021A1D4A18 /* Pods_Sightr.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		852CFB851CC3B96300C79779 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +123,8 @@
 				852CFBA81CC3B96300C79779 /* SightrTests */,
 				852CFBB31CC3B96300C79779 /* SightrUITests */,
 				852CFB8F1CC3B96300C79779 /* Products */,
+				0097B862578E94EA9F084D31 /* Pods */,
+				78F52ECA01B25EE514C4B0CF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,6 +177,9 @@
 			isa = PBXGroup;
 			children = (
 				852CFBC31CC3F68A00C79779 /* GuidesVC.swift */,
+				851864201CC63B3A00C74F62 /* GuideDetailsVC.swift */,
+				850E690A1CC8FF920084F2C4 /* GuideMapVC.swift */,
+				85298F671CC92FC7006DBE11 /* AddPointVC.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -159,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				859F65661CC4EBC3001908B0 /* GuideCell.swift */,
+				85298F651CC92A8F006DBE11 /* GuidePointCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -168,6 +206,7 @@
 			children = (
 				859F65691CC4ED4B001908B0 /* SightrModel.swift */,
 				8518641E1CC620E700C74F62 /* Guide.swift */,
+				85298F631CC9234D006DBE11 /* GuidePoint.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -179,9 +218,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 852CFBB91CC3B96300C79779 /* Build configuration list for PBXNativeTarget "Sightr" */;
 			buildPhases = (
+				A87881EF70944486202FAEE6 /* Check Pods Manifest.lock */,
 				852CFB8A1CC3B96300C79779 /* Sources */,
 				852CFB8B1CC3B96300C79779 /* Frameworks */,
 				852CFB8C1CC3B96300C79779 /* Resources */,
+				4BCB3A79B27F9A58CD7F6ED9 /* Embed Pods Frameworks */,
+				05087B7EBA5B3A8057D23F75 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -299,15 +341,68 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		05087B7EBA5B3A8057D23F75 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sightr/Pods-Sightr-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4BCB3A79B27F9A58CD7F6ED9 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Sightr/Pods-Sightr-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A87881EF70944486202FAEE6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		852CFB8A1CC3B96300C79779 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85298F681CC92FC7006DBE11 /* AddPointVC.swift in Sources */,
 				8518641F1CC620E700C74F62 /* Guide.swift in Sources */,
 				859F65671CC4EBC3001908B0 /* GuideCell.swift in Sources */,
+				85298F641CC9234D006DBE11 /* GuidePoint.swift in Sources */,
+				851864211CC63B3A00C74F62 /* GuideDetailsVC.swift in Sources */,
 				852CFBC41CC3F68A00C79779 /* GuidesVC.swift in Sources */,
+				850E690B1CC8FF920084F2C4 /* GuideMapVC.swift in Sources */,
 				852CFB9A1CC3B96300C79779 /* Sightr.xcdatamodeld in Sources */,
+				85298F661CC92A8F006DBE11 /* GuidePointCell.swift in Sources */,
 				852CFB921CC3B96300C79779 /* AppDelegate.swift in Sources */,
 				859F656A1CC4ED4B001908B0 /* SightrModel.swift in Sources */,
 			);
@@ -451,6 +546,7 @@
 		};
 		852CFBBA1CC3B96300C79779 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B46FAA5002C97F441883DDB5 /* Pods-Sightr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Sightr/Info.plist;
@@ -462,6 +558,7 @@
 		};
 		852CFBBB1CC3B96300C79779 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67452073B6D86F617F24A444 /* Pods-Sightr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Sightr/Info.plist;

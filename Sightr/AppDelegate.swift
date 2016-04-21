@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Sightr
-//
-//  Created by Almin Hosic on 17.04.16.
-//  Copyright © 2016 Almin Hosic. All rights reserved.
-//
-
 import UIKit
 import CoreData
 
@@ -16,7 +8,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // Status Bar Appearance
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
+        // Navigation Bar Appearance
+        let navigationBarAppearace = UINavigationBar.appearance()
+        navigationBarAppearace.tintColor = UIColor.whiteColor()
+        navigationBarAppearace.barTintColor = UIColor(red: 84/255, green: 225/255, blue: 214/255, alpha: 1.0)
+        navigationBarAppearace.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Geometria-Light", size: 20)!, NSForegroundColorAttributeName:UIColor.whiteColor()]
+        
         return true
     }
 

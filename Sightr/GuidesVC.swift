@@ -8,16 +8,10 @@ class GuidesVC: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Navigationbar appearance
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
-        self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Geometria-Light", size: 20)!, NSForegroundColorAttributeName:UIColor.whiteColor()]
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        UIApplication.sharedApplication().statusBarStyle = .Default
     }
     
     override func viewDidLoad() {
@@ -37,6 +31,7 @@ class GuidesVC: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return model.guides.count;
     }
+    
     
     @IBAction func createGuide(sender: UIBarButtonItem) {
         let alertController = UIAlertController(title: "New Guide", message: "Just enter a name", preferredStyle: .Alert)
@@ -76,5 +71,25 @@ class GuidesVC: UITableViewController {
         
         // Show alert
         presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showGuide" {
+            let cell = sender as! GuideCell
+            if let idx = tableView.indexPathForCell(cell){
+                
+                let barVC = segue.destinationViewController as! UITabBarController
+                let points = barVC.viewControllers![0] as! GuideDetailsVC
+                //let map = barVC.viewControllers![1] as! GuideMapVC
+                
+                points.guide = model.guides[idx.row]
+                //map.guide = model.guides[idx.row]
+                
+                // Back Item Appearance
+                let backItem = UIBarButtonItem()
+                backItem.title = ""
+                self.navigationItem.backBarButtonItem = backItem
+            }
+        }
     }
 }

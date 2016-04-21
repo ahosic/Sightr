@@ -13,6 +13,7 @@ class Guide {
             return formatter.stringFromDate(timestamp)
         }
     }
+    var points = [GuidePoint]()
     
     init(name:String){
         self.id = NSUUID().UUIDString
