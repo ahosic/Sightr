@@ -158,7 +158,6 @@
 				852CFB9D1CC3B96300C79779 /* LaunchScreen.storyboard */,
 				852CFBA01CC3B96300C79779 /* Info.plist */,
 				852CFB981CC3B96300C79779 /* Sightr.xcdatamodeld */,
-				85F4F7241CCB7CFD009B0C9C /* Constants.swift */,
 			);
 			path = Sightr;
 			sourceTree = "<group>";
@@ -223,6 +222,7 @@
 		85F4F7281CCBCE10009B0C9C /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				85F4F7241CCB7CFD009B0C9C /* Constants.swift */,
 				85F4F7291CCBCE1B009B0C9C /* MapTasks.swift */,
 			);
 			name = Helper;

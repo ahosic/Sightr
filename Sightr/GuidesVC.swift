@@ -15,39 +15,39 @@ class GuidesVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Add Observers
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GuidesVC.updateViewOnGuidesChanged(_:)), name: ModelNotification.GuidesChanged, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GuidesVC.updateViewOnGuidesAdded(_:)), name: ModelNotification.GuidesAdded, object: nil)
+        // Add Observer
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GuidesVC.update(_:)), name: ModelNotification.GuidesChanged, object: nil)
     }
     
     deinit {
-        // Remove Observers
+        // Remove Observer
         NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelNotification.GuidesChanged, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelNotification.GuidesAdded, object: nil)
     }
     
     /***********  Observer methods ***********/
     
-    func updateViewOnGuidesAdded(notification:NSNotification){
-        // Get changed Index
+    func update(notification:NSNotification){
+        // Get changed index
         let idxPath = notification.userInfo?["indices"] as? [NSIndexPath]
         
-        // Updating TableView
-        if idxPath != nil {
-            self.tableView.beginUpdates()
-            self.tableView.insertRowsAtIndexPaths(idxPath!, withRowAnimation: .Automatic)
-            self.tableView.endUpdates()
-        }
-    }
-    
-    func updateViewOnGuidesChanged(notification:NSNotification){
-        // Get changed Index
-        let idxPath = notification.userInfo?["indices"] as? [NSIndexPath]
+        // Get operation type
+        let type = notification.userInfo?["operationType"] as? NSString
         
         // Updating TableView
-        if idxPath != nil {
+        if idxPath != nil && type != nil {
+            
             self.tableView.beginUpdates()
-            self.tableView.reloadRowsAtIndexPaths(idxPath!, withRowAnimation: .Automatic)
+            
+            switch type! {
+            case ModelOperationType.Add:
+                self.tableView.insertRowsAtIndexPaths(idxPath!, withRowAnimation: .Automatic)
+            case ModelOperationType.Update:
+                self.tableView.reloadRowsAtIndexPaths(idxPath!, withRowAnimation: .Automatic)
+            case ModelOperationType.Removed:
+                self.tableView.deleteRowsAtIndexPaths(idxPath!, withRowAnimation: .Automatic)
+            default: ()
+            }
+            
             self.tableView.endUpdates()
         }
     }
@@ -70,6 +70,26 @@ class GuidesVC: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return SightrModel.sharedInstance.guides.count;
+    }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let share = UITableViewRowAction(style: .Normal, title: "Share", handler: {action, index in
+            print("Share")
+        })
+        
+        share.backgroundColor = UIColor(red: 199/255, green: 199/255, blue: 204/255, alpha: 1.0)
+        
+        let edit = UITableViewRowAction(style: .Normal, title: "Edit", handler: {action, index in
+            print("Edit")
+        })
+        
+        edit.backgroundColor = UIColor(red: 255/255, green: 149/255, blue: 0/255, alpha: 1.0)
+        
+        let trash = UITableViewRowAction(style: .Destructive, title: "Trash", handler: {action, index in
+            self.removeGuide(index.row)
+        })
+        
+        return [trash, edit, share]
     }
     
     /***********  Actions ***********/
@@ -127,5 +147,25 @@ class GuidesVC: UITableViewController {
                 self.navigationItem.backBarButtonItem = backItem
             }
         }
+    }
+    
+    /***********  Helper methods ***********/
+    
+    func removeGuide(index:Int){
+        let alertController = UIAlertController(title: "Trash", message: "Are your sure you want to remove this guide?", preferredStyle: .Alert)
+        
+        // Actions
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {(_) in })
+        let trashAction = UIAlertAction(title: "Remove", style: .Destructive) { (_) in
+            // Remove guide
+            SightrModel.sharedInstance.removeGuide(index)
+        }
+        
+        // Add actions
+        alertController.addAction(trashAction)
+        alertController.addAction(cancelAction)
+        
+        // Show alert
+        presentViewController(alertController, animated: true, completion: nil)
     }
 }

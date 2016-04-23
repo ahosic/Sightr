@@ -25,25 +25,35 @@ class GuideDetailsVC: UITableViewController {
         super.viewDidLoad()
         
         // Add observers
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GuideDetailsVC.updateGuideDetailsOnPointAdded(_:)), name: ModelNotification.PointsAdded, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GuideDetailsVC.update(_:)), name: ModelNotification.PointsChanged, object: nil)
     }
     
     deinit {
         // Remove observers
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelNotification.PointsAdded, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelNotification.PointsChanged, object: nil)
     }
     
     /***********  Observer methods ***********/
     
-    func updateGuideDetailsOnPointAdded(notification:NSNotification){
+    func update(notification:NSNotification){
         // Get changed index
         let id = notification.userInfo?["guideID"] as? NSString
+        let type = notification.userInfo?["operationType"] as? NSString
         
         // If update for current guide -> update tableView
-        if id != nil && id == guide?.id {
+        if id != nil && id == guide?.id && type != nil {
             if let idxPath = notification.userInfo?["indices"] as? [NSIndexPath] {
+                
                 self.tableView.beginUpdates()
-                self.tableView.insertRowsAtIndexPaths(idxPath, withRowAnimation: .Automatic)
+                
+                switch type! {
+                case ModelOperationType.Add:
+                    self.tableView.insertRowsAtIndexPaths(idxPath, withRowAnimation: .Automatic)
+                case ModelOperationType.Removed:
+                    self.tableView.deleteRowsAtIndexPaths(idxPath, withRowAnimation: .Automatic)
+                default: ()
+                }
+                
                 self.tableView.endUpdates()
             }
         }
@@ -67,6 +77,20 @@ class GuideDetailsVC: UITableViewController {
         cell.subtitle.text = point?.description
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let edit = UITableViewRowAction(style: .Normal, title: "Edit", handler: {action, index in
+            print("Edit")
+        })
+        
+        edit.backgroundColor = UIColor(red: 255/255, green: 149/255, blue: 0/255, alpha: 1.0)
+        
+        let trash = UITableViewRowAction(style: .Destructive, title: "Trash", handler: {action, index in
+            self.removePoint(index.row)
+        })
+        
+        return [trash, edit]
     }
     
     /***********  Actions ***********/
@@ -100,5 +124,25 @@ class GuideDetailsVC: UITableViewController {
             
             SightrModel.sharedInstance.addPointToGuide(guide!, point: point)
         }
+    }
+    
+    /***********  Helper methods ***********/
+    
+    func removePoint(index:Int){
+        let alertController = UIAlertController(title: "Trash", message: "Are your sure you want to remove this point?", preferredStyle: .Alert)
+        
+        // Actions
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {(_) in })
+        let trashAction = UIAlertAction(title: "Remove", style: .Destructive) { (_) in
+            // Remove guide
+            SightrModel.sharedInstance.removePointOfGuide(self.guide!, index: index)
+        }
+        
+        // Add actions
+        alertController.addAction(trashAction)
+        alertController.addAction(cancelAction)
+        
+        // Show alert
+        presentViewController(alertController, animated: true, completion: nil)
     }
 }
