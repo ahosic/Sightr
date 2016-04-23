@@ -86,6 +86,7 @@ class GuideDetailsVC: UITableViewController {
             let desc = addPoint.pointText.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let radius = addPoint.pointRadius.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let link = addPoint.pointLink.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let image = addPoint.pointImage.image
             
             // Create and save point
             let point = GuidePoint(name: ttl!,
@@ -94,7 +95,7 @@ class GuideDetailsVC: UITableViewController {
                                    radius: Double(radius!)!,
                                    description: desc!,
                                    link: link!,
-                                   image: nil)
+                                   image: image)
             
             SightrModel.sharedInstance.addPointToGuide(guide!, point: point)
         }
