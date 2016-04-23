@@ -87,11 +87,12 @@ class GuideDetailsVC: UITableViewController {
             let radius = addPoint.pointRadius.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let link = addPoint.pointLink.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let image = addPoint.pointImage.image
+            let location = addPoint.location
             
             // Create and save point
             let point = GuidePoint(name: ttl!,
-                                   longitude: 0,
-                                   latitude: 0,
+                                   longitude: (location?.longitude)!,
+                                   latitude: (location?.latitude)!,
                                    radius: Double(radius!)!,
                                    description: desc!,
                                    link: link!,

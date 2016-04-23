@@ -1,4 +1,5 @@
 import UIKit
+import CoreLocation
 
 class AddPointVC: UITableViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -13,10 +14,10 @@ class AddPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContro
     @IBOutlet weak var pointImage: UIImageView!
     
     let imagePicker = UIImagePickerController()
+    var location:CLLocationCoordinate2D?
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        doneButton.enabled = false
     }
     
     override func viewDidLoad() {
@@ -26,6 +27,8 @@ class AddPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContro
         
         pointText.delegate = self
         imagePicker.delegate = self
+        
+        doneButton.enabled = false
     }
     
     /***********  TableView methods ***********/
@@ -38,6 +41,22 @@ class AddPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContro
     
     /***********  Actions ***********/
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Back Item Appearance
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        self.navigationItem.backBarButtonItem = backItem
+    }
+    
+    @IBAction func pickLocation(segue:UIStoryboardSegue){
+        if segue.identifier == "locationPicked"{
+            if let picker = segue.sourceViewController as? AddPointLocationVC {
+                location = picker.pickedLocation
+                validateInputs(picker)
+            }
+        }
+    }
+    
     func textViewDidChange(textView: UITextView) {
         validateInputs(textView)
     }
@@ -47,7 +66,7 @@ class AddPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContro
         let text = pointText.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         let radius = pointRadius.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
-        if (ttl != nil && ttl != "") && (text != nil && text != "") && (radius != nil && radius != "") {
+        if (ttl != nil && ttl != "") && (text != nil && text != "") && (radius != nil && radius != "") && location != nil{
             if Double(radius!) != nil {
                 doneButton.enabled = true
             } else {
