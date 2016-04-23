@@ -80,7 +80,7 @@ class GuidesVC: UITableViewController {
         share.backgroundColor = UIColor(red: 199/255, green: 199/255, blue: 204/255, alpha: 1.0)
         
         let edit = UITableViewRowAction(style: .Normal, title: "Edit", handler: {action, index in
-            print("Edit")
+            self.editGuide(indexPath.row)
         })
         
         edit.backgroundColor = UIColor(red: 255/255, green: 149/255, blue: 0/255, alpha: 1.0)
@@ -163,6 +163,42 @@ class GuidesVC: UITableViewController {
         
         // Add actions
         alertController.addAction(trashAction)
+        alertController.addAction(cancelAction)
+        
+        // Show alert
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func editGuide(index:Int){
+        let guide = SightrModel.sharedInstance.guides[index]
+        let alertController = UIAlertController(title: "Edit Guide", message: "Set the guide's name", preferredStyle: .Alert)
+        
+        // Actions
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {(_) in })
+        let editAction = UIAlertAction(title: "Done", style: .Default) { (_) in
+            let name = alertController.textFields![0] as UITextField
+            
+            if let text = name.text {
+                guide.name = text
+                
+                // Update guide
+                SightrModel.sharedInstance.updateGuide(guide)
+            }
+        }
+        
+        alertController.addTextFieldWithConfigurationHandler({(textfield) in
+            textfield.text = guide.name
+            
+            // Check, if textfield not empty
+            NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textfield, queue: NSOperationQueue.mainQueue()) { (notification) in
+                
+                let text = textfield.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                editAction.enabled = text != ""
+            }
+        })
+        
+        // Add actions
+        alertController.addAction(editAction)
         alertController.addAction(cancelAction)
         
         // Show alert

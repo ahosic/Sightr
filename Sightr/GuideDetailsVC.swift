@@ -1,8 +1,10 @@
 import UIKit
+import CoreLocation
 
 class GuideDetailsVC: UITableViewController {
     
     var guide:Guide?
+    var selectedPoint:GuidePoint?
     let textCellID = "textPointCell"
     
     
@@ -49,6 +51,8 @@ class GuideDetailsVC: UITableViewController {
                 switch type! {
                 case ModelOperationType.Add:
                     self.tableView.insertRowsAtIndexPaths(idxPath, withRowAnimation: .Automatic)
+                case ModelOperationType.Update:
+                    self.tableView.reloadRowsAtIndexPaths(idxPath, withRowAnimation: .Automatic)
                 case ModelOperationType.Removed:
                     self.tableView.deleteRowsAtIndexPaths(idxPath, withRowAnimation: .Automatic)
                 default: ()
@@ -81,7 +85,8 @@ class GuideDetailsVC: UITableViewController {
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let edit = UITableViewRowAction(style: .Normal, title: "Edit", handler: {action, index in
-            print("Edit")
+            self.selectedPoint = self.guide?.points[indexPath.row]
+            self.performSegueWithIdentifier("editPoint", sender: tableView.cellForRowAtIndexPath(indexPath))
         })
         
         edit.backgroundColor = UIColor(red: 255/255, green: 149/255, blue: 0/255, alpha: 1.0)
@@ -96,6 +101,11 @@ class GuideDetailsVC: UITableViewController {
     /***********  Actions ***********/
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "editPoint" {
+            if let destination = segue.destinationViewController as? EditPointVC {
+                destination.point = selectedPoint
+            }
+        }
         
         // Back Item Appearance
         let backItem = UIBarButtonItem()
@@ -123,6 +133,29 @@ class GuideDetailsVC: UITableViewController {
                                    image: image)
             
             SightrModel.sharedInstance.addPointToGuide(guide!, point: point)
+        }
+    }
+    
+    @IBAction func editPoint(segue:UIStoryboardSegue) {
+        if let editPoint = segue.sourceViewController as? EditPointVC {
+            // Trim data
+            let ttl = editPoint.pointTitle.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let desc = editPoint.pointText.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let radius = editPoint.pointRadius.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let link = editPoint.pointLink.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let image = editPoint.pointImage.image
+            let location = editPoint.location
+            
+            selectedPoint?.name = ttl!
+            selectedPoint?.description = desc!
+            selectedPoint?.radius = Double(radius!)!
+            selectedPoint?.link = link!
+            selectedPoint?.image = image
+            selectedPoint?.longitude = (location?.longitude)!
+            selectedPoint?.latitude = (location?.latitude)!
+            
+            SightrModel.sharedInstance.updatePoint(self.guide!, point: self.selectedPoint!)
+            selectedPoint = nil
         }
     }
     

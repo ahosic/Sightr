@@ -89,6 +89,17 @@ class SightrModel {
         }
     }
     
+    func updatePoint(guide:Guide, point:GuidePoint){
+        if let idx = indexOfPoint(guide, point: point) {
+            guide.points[idx] = point
+            updateGuide(guide)
+            
+            // Notify observers
+            let info = ["operationType" : NSString(string: ModelOperationType.Update), "guideID" : NSString(string: guide.id) , "indices" : [NSIndexPath(forRow: idx, inSection: 0)]]
+            NSNotificationCenter.defaultCenter().postNotificationName(ModelNotification.PointsChanged, object: nil, userInfo: info)
+        }
+    }
+    
     func removePointOfGuide(guide:Guide, index:Int) {
         guide.points.removeAtIndex(index)
         

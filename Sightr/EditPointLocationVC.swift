@@ -1,16 +1,17 @@
 import UIKit
 import GoogleMaps
 
-class AddPointLocationVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+class EditPointLocationVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var searchButton: UIBarButtonItem!
+    
     @IBOutlet weak var mapView: GMSMapView!
     
     var pickedLocation:CLLocationCoordinate2D?
     
     let locationManager = CLLocationManager()
-    var didFindMyLocation = false
+    var didFindMyLocation = true
     var locationMarker: GMSMarker!
     var mapTasks = MapTasks()
     
@@ -26,7 +27,6 @@ class AddPointLocationVC: UIViewController, CLLocationManagerDelegate, GMSMapVie
         
         mapView.delegate = self
         mapView.addObserver(self, forKeyPath: "myLocation", options: NSKeyValueObservingOptions.New, context: nil)
-        doneButton.enabled = false
         
         if let location = pickedLocation {
             mapView.camera = GMSCameraPosition.cameraWithTarget(location, zoom: 10.0)
@@ -125,4 +125,5 @@ class AddPointLocationVC: UIViewController, CLLocationManagerDelegate, GMSMapVie
         locationMarker.icon = GMSMarker.markerImageWithColor(UIColor(red: 90/255, green: 200/255, blue: 251/255, alpha: 1.0))
         locationMarker.opacity = 0.87
     }
+    
 }

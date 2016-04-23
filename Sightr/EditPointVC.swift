@@ -1,10 +1,8 @@
 import UIKit
 import CoreLocation
 
-class AddPointVC: UITableViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+class EditPointVC: UITableViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var doneButton: UIBarButtonItem!
-    
     @IBOutlet weak var imageCell: UITableViewCell!
     
     @IBOutlet weak var pointTitle: UITextField!
@@ -13,12 +11,9 @@ class AddPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContro
     @IBOutlet weak var pointRadius: UITextField!
     @IBOutlet weak var pointImage: UIImageView!
     
+    var point:GuidePoint?
     let imagePicker = UIImagePickerController()
     var location:CLLocationCoordinate2D?
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +21,17 @@ class AddPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContro
         pointText.delegate = self
         imagePicker.delegate = self
         
-        doneButton.enabled = false
+        self.pointTitle.text = point?.name
+        self.pointText.text = point?.description
+        self.pointLink.text = point?.link
+        self.pointRadius.text = String(point!.radius)
+        
+        if let image = point?.image {
+            self.pointImage.image = image
+            self.imageCell.hidden = false
+        }
+        
+        self.location = CLLocationCoordinate2D(latitude: point!.latitude, longitude: point!.longitude)
     }
     
     /***********  TableView methods ***********/
@@ -40,11 +45,9 @@ class AddPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContro
     /***********  Actions ***********/
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "pickLocation" {
-            if let destination = segue.destinationViewController as? AddPointLocationVC {
-                if location != nil {
-                    destination.pickedLocation = location
-                }
+        if segue.identifier == "pickLocationForEditing" {
+            if let destination = segue.destinationViewController as? EditPointLocationVC {
+                destination.pickedLocation = location
             }
         }
         
@@ -56,7 +59,7 @@ class AddPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContro
     
     @IBAction func pickLocation(segue:UIStoryboardSegue){
         if segue.identifier == "locationPicked"{
-            if let picker = segue.sourceViewController as? AddPointLocationVC {
+            if let picker = segue.sourceViewController as? EditPointLocationVC {
                 location = picker.pickedLocation
                 validateInputs(picker)
             }
@@ -81,7 +84,6 @@ class AddPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContro
         } else {
             doneButton.enabled = false
         }
-        
     }
     
     @IBAction func pickImage(sender: AnyObject) {
@@ -138,4 +140,5 @@ class AddPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContro
         // Show ImagePicker
         presentViewController(imagePicker, animated: true, completion: nil)
     }
+    
 }
