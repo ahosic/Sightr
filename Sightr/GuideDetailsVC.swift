@@ -1,6 +1,7 @@
 import UIKit
 
 class GuideDetailsVC: UITableViewController {
+    
     var guide:Guide?
     let textCellID = "textPointCell"
     
@@ -10,6 +11,7 @@ class GuideDetailsVC: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Set title of view
         if guide != nil {
             self.tabBarController?.navigationItem.title = guide?.name
         } else {
@@ -21,7 +23,33 @@ class GuideDetailsVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Add observers
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GuideDetailsVC.updateGuideDetailsOnPointAdded(_:)), name: ModelNotification.PointsAdded, object: nil)
     }
+    
+    deinit {
+        // Remove observers
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: ModelNotification.PointsAdded, object: nil)
+    }
+    
+    /***********  Observer methods ***********/
+    
+    func updateGuideDetailsOnPointAdded(notification:NSNotification){
+        // Get changed index
+        let id = notification.userInfo?["guideID"] as? NSString
+        
+        // If update for current guide -> update tableView
+        if id != nil && id == guide?.id {
+            if let idxPath = notification.userInfo?["indices"] as? [NSIndexPath] {
+                self.tableView.beginUpdates()
+                self.tableView.insertRowsAtIndexPaths(idxPath, withRowAnimation: .Automatic)
+                self.tableView.endUpdates()
+            }
+        }
+    }
+    
+    /***********  TableView methods ***********/
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if guide != nil {
@@ -41,9 +69,9 @@ class GuideDetailsVC: UITableViewController {
         return cell
     }
     
+    /***********  Actions ***********/
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "addPoint" {
-        }
         
         // Back Item Appearance
         let backItem = UIBarButtonItem()
@@ -52,5 +80,23 @@ class GuideDetailsVC: UITableViewController {
     }
     
     @IBAction func addPoint(segue: UIStoryboardSegue) {
+        if let addPoint = segue.sourceViewController as? AddPointVC {
+            // Trim data
+            let ttl = addPoint.pointTitle.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let desc = addPoint.pointText.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let radius = addPoint.pointRadius.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let link = addPoint.pointLink.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            
+            // Create and save point
+            let point = GuidePoint(name: ttl!,
+                                   longitude: 0,
+                                   latitude: 0,
+                                   radius: Double(radius!)!,
+                                   description: desc!,
+                                   link: link!,
+                                   image: nil)
+            
+            SightrModel.sharedInstance.addPointToGuide(guide!, point: point)
+        }
     }
 }

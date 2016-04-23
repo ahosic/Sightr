@@ -9,11 +9,11 @@ class GuidePoint {
     var latitude:Double
     var radius:Double
     
-    var image:UIImage
+    var image:UIImage?
     var description:String
-    var link:String
+    var link:String?
     
-    init(name:String, longitude:Double, latitude:Double, radius:Double, description:String, link:String, image:UIImage){
+    init(name:String, longitude:Double, latitude:Double, radius:Double, description:String, link:String, image:UIImage?){
         self.id = NSUUID().UUIDString
         self.name = name
         

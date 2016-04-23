@@ -24,6 +24,7 @@
 		852CFBC71CC4024600C79779 /* Geometria_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 852CFBC61CC4024600C79779 /* Geometria_Light.otf */; };
 		859F65671CC4EBC3001908B0 /* GuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F65661CC4EBC3001908B0 /* GuideCell.swift */; };
 		859F656A1CC4ED4B001908B0 /* SightrModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F65691CC4ED4B001908B0 /* SightrModel.swift */; };
+		85F4F7251CCB7CFD009B0C9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F4F7241CCB7CFD009B0C9C /* Constants.swift */; };
 		E9D24A4F0CD57ECFE336EA3C /* Pods_Sightr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B11C144631148E021A1D4A18 /* Pods_Sightr.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		852CFBC61CC4024600C79779 /* Geometria_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Geometria_Light.otf; sourceTree = "<group>"; };
 		859F65661CC4EBC3001908B0 /* GuideCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideCell.swift; sourceTree = "<group>"; };
 		859F65691CC4ED4B001908B0 /* SightrModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightrModel.swift; sourceTree = "<group>"; };
+		85F4F7241CCB7CFD009B0C9C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B11C144631148E021A1D4A18 /* Pods_Sightr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sightr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B46FAA5002C97F441883DDB5 /* Pods-Sightr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sightr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sightr/Pods-Sightr.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,6 +153,7 @@
 				852CFB9D1CC3B96300C79779 /* LaunchScreen.storyboard */,
 				852CFBA01CC3B96300C79779 /* Info.plist */,
 				852CFB981CC3B96300C79779 /* Sightr.xcdatamodeld */,
+				85F4F7241CCB7CFD009B0C9C /* Constants.swift */,
 			);
 			path = Sightr;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				85298F661CC92A8F006DBE11 /* GuidePointCell.swift in Sources */,
 				852CFB921CC3B96300C79779 /* AppDelegate.swift in Sources */,
 				859F656A1CC4ED4B001908B0 /* SightrModel.swift in Sources */,
+				85F4F7251CCB7CFD009B0C9C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
