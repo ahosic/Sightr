@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
@@ -84,6 +85,99 @@
             </objects>
             <point key="canvasLocation" x="2097" y="391"/>
         </scene>
+        <!--Point-->
+        <scene sceneID="mxg-Aw-JBX">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PDH-ge-U6f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="FQ1-PO-ftc" customClass="PointDetailsVC" customModule="Sightr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3X4-AP-6ZF"/>
+                        <viewControllerLayoutGuide type="bottom" id="Viq-L7-gZ6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="l6k-gI-QGd">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Nv-dE-6jl">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nAl-EZ-baE" customClass="GMSMapView">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="nAl-EZ-baE" secondAttribute="height" multiplier="3:2" id="ZN5-eg-25v"/>
+                                        </constraints>
+                                    </view>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="hf1-7w-9kP">
+                                        <rect key="frame" x="16" y="408" width="568" height="0.0"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="dC8-zu-acT"/>
+                                            <constraint firstAttribute="height" constant="200" id="p2Y-NC-sJS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="dC8-zu-acT"/>
+                                                <exclude reference="p2Y-NC-sJS"/>
+                                            </mask>
+                                        </variation>
+                                    </textView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ym-hz-nPu">
+                                        <rect key="frame" x="0.0" y="416.5" width="600" height="220"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="220" id="0QH-jm-GL3"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4ym-hz-nPu" firstAttribute="leading" secondItem="4Nv-dE-6jl" secondAttribute="leading" id="0xi-TQ-9b3"/>
+                                    <constraint firstItem="hf1-7w-9kP" firstAttribute="top" secondItem="nAl-EZ-baE" secondAttribute="bottom" constant="8" id="3xC-PB-w8S"/>
+                                    <constraint firstAttribute="bottom" secondItem="4ym-hz-nPu" secondAttribute="bottom" constant="8" id="6lg-aZ-F4J"/>
+                                    <constraint firstItem="4ym-hz-nPu" firstAttribute="top" secondItem="hf1-7w-9kP" secondAttribute="bottom" constant="8" id="7dp-rW-fwW"/>
+                                    <constraint firstAttribute="trailing" secondItem="nAl-EZ-baE" secondAttribute="trailing" id="R9e-vf-Wfm"/>
+                                    <constraint firstAttribute="trailing" secondItem="4ym-hz-nPu" secondAttribute="trailing" id="UZf-0R-p9s"/>
+                                    <constraint firstAttribute="trailing" secondItem="hf1-7w-9kP" secondAttribute="trailing" constant="16" id="Ulx-sa-Ks1"/>
+                                    <constraint firstItem="hf1-7w-9kP" firstAttribute="leading" secondItem="4Nv-dE-6jl" secondAttribute="leading" constant="16" id="oaO-Gg-lfb"/>
+                                    <constraint firstItem="nAl-EZ-baE" firstAttribute="top" secondItem="4Nv-dE-6jl" secondAttribute="top" id="riP-nz-lM5"/>
+                                    <constraint firstItem="nAl-EZ-baE" firstAttribute="leading" secondItem="4Nv-dE-6jl" secondAttribute="leading" id="xPH-RX-79n"/>
+                                    <constraint firstItem="nAl-EZ-baE" firstAttribute="width" secondItem="4Nv-dE-6jl" secondAttribute="width" id="yfG-w0-yWb"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Nv-dE-6jl" firstAttribute="width" secondItem="l6k-gI-QGd" secondAttribute="width" id="1CL-O6-j0F"/>
+                            <constraint firstItem="4Nv-dE-6jl" firstAttribute="centerY" secondItem="l6k-gI-QGd" secondAttribute="centerY" id="Fmd-Py-cnx"/>
+                            <constraint firstAttribute="trailing" secondItem="4Nv-dE-6jl" secondAttribute="trailing" id="G10-sf-WP7"/>
+                            <constraint firstItem="4Nv-dE-6jl" firstAttribute="height" secondItem="l6k-gI-QGd" secondAttribute="height" id="Xdm-SA-jCG"/>
+                            <constraint firstAttribute="bottom" secondItem="4Nv-dE-6jl" secondAttribute="bottom" id="Yba-fP-PWx"/>
+                            <constraint firstItem="4Nv-dE-6jl" firstAttribute="centerX" secondItem="l6k-gI-QGd" secondAttribute="centerX" id="bLs-Cz-nZw"/>
+                            <constraint firstItem="4Nv-dE-6jl" firstAttribute="leading" secondItem="l6k-gI-QGd" secondAttribute="leading" id="cQX-tH-LPr"/>
+                            <constraint firstItem="4Nv-dE-6jl" firstAttribute="top" secondItem="3X4-AP-6ZF" secondAttribute="bottom" id="slx-ub-vg1"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="1CL-O6-j0F"/>
+                                <exclude reference="Fmd-Py-cnx"/>
+                                <exclude reference="Xdm-SA-jCG"/>
+                                <exclude reference="bLs-Cz-nZw"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Point" id="edp-Zf-dYn"/>
+                    <connections>
+                        <outlet property="image" destination="4ym-hz-nPu" id="Ki4-H8-X9u"/>
+                        <outlet property="mapView" destination="nAl-EZ-baE" id="BH2-Ak-bPn"/>
+                        <outlet property="pointDesc" destination="hf1-7w-9kP" id="ImI-5q-3A4"/>
+                        <outlet property="scroll" destination="4Nv-dE-6jl" id="Jsf-6D-6oy"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2993" y="-702"/>
+        </scene>
         <!--Points-->
         <scene sceneID="AN8-SM-lMn">
             <objects>
@@ -101,7 +195,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GdS-xm-tdP">
-                                            <rect key="frame" x="24" y="16" width="519" height="37.5"/>
+                                            <rect key="frame" x="24" y="16" width="519" height="37"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -126,6 +220,7 @@
                                 <connections>
                                     <outlet property="subtitle" destination="an8-Vf-pex" id="BZ1-ro-wSX"/>
                                     <outlet property="title" destination="GdS-xm-tdP" id="fsS-8T-FCq"/>
+                                    <segue destination="FQ1-PO-ftc" kind="show" identifier="showPointDetails" id="pQi-XD-odH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -210,6 +305,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4TS-16-SLP">
                                                     <rect key="frame" x="24" y="37" width="560" height="82"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <mutableString key="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,</mutableString>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="alphabet"/>
                                                 </textView>

@@ -107,6 +107,12 @@ class GuideDetailsVC: UITableViewController {
             }
         }
         
+        if segue.identifier == "showPointDetails" {
+            if let idx = tableView.indexPathForCell(sender as! GuidePointCell) {
+                (segue.destinationViewController as! PointDetailsVC).point = self.guide?.points[idx.row]
+            }
+        }
+        
         // Back Item Appearance
         let backItem = UIBarButtonItem()
         backItem.title = ""
