@@ -1,5 +1,5 @@
 import UIKit
-import CoreLocation
+import GoogleMaps
 
 class EditPointVC: UITableViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var doneButton: UIBarButtonItem!
@@ -11,9 +11,12 @@ class EditPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContr
     @IBOutlet weak var pointRadius: UITextField!
     @IBOutlet weak var pointImage: UIImageView!
     
+    var pointAddress:String?
+    var pointLocation:CLLocationCoordinate2D?
+    
     var point:GuidePoint?
+    var placePicker:GMSPlacePicker?
     let imagePicker = UIImagePickerController()
-    var location:CLLocationCoordinate2D?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +34,8 @@ class EditPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContr
             self.imageCell.hidden = false
         }
         
-        self.location = CLLocationCoordinate2D(latitude: point!.latitude, longitude: point!.longitude)
+        self.pointAddress = point?.address
+        self.pointLocation = point?.location
     }
     
     /***********  TableView methods ***********/
@@ -40,30 +44,19 @@ class EditPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContr
         if indexPath.row == 0 && indexPath.section == 2 {
             showActionsForImagePicking()
         }
+        
+        if indexPath.row == 1 && indexPath.section == 1 {
+            showPlacePicker()
+        }
     }
     
     /***********  Actions ***********/
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "pickLocationForEditing" {
-            if let destination = segue.destinationViewController as? EditPointLocationVC {
-                destination.pickedLocation = location
-            }
-        }
-        
         // Back Item Appearance
         let backItem = UIBarButtonItem()
         backItem.title = ""
         self.navigationItem.backBarButtonItem = backItem
-    }
-    
-    @IBAction func pickLocation(segue:UIStoryboardSegue){
-        if segue.identifier == "locationPicked"{
-            if let picker = segue.sourceViewController as? EditPointLocationVC {
-                location = picker.pickedLocation
-                validateInputs(picker)
-            }
-        }
     }
     
     func textViewDidChange(textView: UITextView) {
@@ -75,7 +68,7 @@ class EditPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContr
         let text = pointText.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         let radius = pointRadius.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
-        if (ttl != nil && ttl != "") && (text != nil && text != "") && (radius != nil && radius != "") && location != nil{
+        if (ttl != nil && ttl != "") && (text != nil && text != "") && (radius != nil && radius != "") && pointLocation != nil{
             if Double(radius!) != nil {
                 doneButton.enabled = true
             } else {
@@ -105,6 +98,24 @@ class EditPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContr
     }
     
     /***********  Helper methods ***********/
+    
+    func showPlacePicker() {
+        // Configure place picker
+        let center = point?.location //CLLocationCoordinate2DMake(48.306173, 14.286371)
+        let northEast = CLLocationCoordinate2DMake(center!.latitude + 0.001, center!.longitude + 0.001)
+        let southWest = CLLocationCoordinate2DMake(center!.latitude - 0.001, center!.longitude - 0.001)
+        let viewport = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
+        let config = GMSPlacePickerConfig(viewport: viewport)
+        placePicker = GMSPlacePicker(config: config)
+        
+        placePicker?.pickPlaceWithCallback({ (place: GMSPlace?, error: NSError?) -> Void in
+            if let place = place {
+                self.pointLocation = place.coordinate
+                self.pointAddress = place.formattedAddress
+                self.validateInputs(self.placePicker!)
+            }
+        })
+    }
     
     func showActionsForImagePicking() {
         let imagePickerOptions = UIAlertController(title: nil, message: "Choose a image source", preferredStyle: .ActionSheet)

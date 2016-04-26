@@ -136,10 +136,10 @@ class GuidesVC: UITableViewController {
                 
                 let barVC = segue.destinationViewController as! UITabBarController
                 let points = barVC.viewControllers![0] as! GuideDetailsVC
-                //let map = barVC.viewControllers![1] as! GuideMapVC
+                let map = barVC.viewControllers![1] as! GuideMapVC
                 
                 points.guide = SightrModel.sharedInstance.guides[idx.row]
-                //map.guide = model.guides[idx.row]
+                map.guide = SightrModel.sharedInstance.guides[idx.row]
                 
                 // Back Item Appearance
                 let backItem = UIBarButtonItem()

@@ -61,8 +61,7 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         super.viewDidAppear(animated)
         
         // Set point location
-        let location = CLLocationCoordinate2D(latitude: point!.latitude, longitude: point!.longitude)
-        self.addLocationMarker(location)
+        self.addLocationMarker((point?.location)!)
     }
     
     /***********  Delegate methods ***********/
@@ -95,7 +94,7 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         
         circle.fillColor = UIColor(red: 90/255, green: 200/255, blue: 251/255, alpha: 0.24)
         circle.strokeColor = UIColor(red: 90/255, green: 200/255, blue: 251/255, alpha: 1)
-        circle.strokeWidth = 2
+        circle.strokeWidth = 1
         
         circle.map = mapView;
     }

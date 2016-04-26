@@ -78,7 +78,12 @@ class GuideDetailsVC: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(textCellID) as! GuidePointCell
         
         cell.title.text = point?.name
-        cell.subtitle.text = point?.description
+        
+        if let address = point?.address {
+            cell.subtitle.text = address
+        } else {
+            cell.subtitle.text = ""
+        }
         
         return cell
     }
@@ -127,12 +132,13 @@ class GuideDetailsVC: UITableViewController {
             let radius = addPoint.pointRadius.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let link = addPoint.pointLink.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let image = addPoint.pointImage.image
-            let location = addPoint.location
+            let location = addPoint.pointLocation
+            let address = addPoint.pointAddress
             
             // Create and save point
             let point = GuidePoint(name: ttl!,
-                                   longitude: (location?.longitude)!,
-                                   latitude: (location?.latitude)!,
+                                   location: location!,
+                                   address: address,
                                    radius: Double(radius!)!,
                                    description: desc!,
                                    link: link!,
@@ -150,15 +156,16 @@ class GuideDetailsVC: UITableViewController {
             let radius = editPoint.pointRadius.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let link = editPoint.pointLink.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             let image = editPoint.pointImage.image
-            let location = editPoint.location
+            let location = editPoint.pointLocation
+            let address = editPoint.pointAddress
             
             selectedPoint?.name = ttl!
             selectedPoint?.description = desc!
             selectedPoint?.radius = Double(radius!)!
             selectedPoint?.link = link!
             selectedPoint?.image = image
-            selectedPoint?.longitude = (location?.longitude)!
-            selectedPoint?.latitude = (location?.latitude)!
+            selectedPoint?.location = location!
+            selectedPoint?.address = address
             
             SightrModel.sharedInstance.updatePoint(self.guide!, point: self.selectedPoint!)
             selectedPoint = nil

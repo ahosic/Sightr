@@ -88,7 +88,6 @@
         <!--Point-->
         <scene sceneID="mxg-Aw-JBX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PDH-ge-U6f" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="FQ1-PO-ftc" customClass="PointDetailsVC" customModule="Sightr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3X4-AP-6ZF"/>
@@ -175,6 +174,7 @@
                         <outlet property="scroll" destination="4Nv-dE-6jl" id="Jsf-6D-6oy"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PDH-ge-U6f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2993" y="-702"/>
         </scene>
@@ -305,7 +305,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4TS-16-SLP">
                                                     <rect key="frame" x="24" y="37" width="560" height="82"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <mutableString key="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,</mutableString>
+                                                    <string key="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="alphabet"/>
                                                 </textView>
@@ -427,9 +427,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="aCT-9E-6zR" kind="show" identifier="pickLocation" id="XYH-d5-LHR"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -651,9 +648,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="NPK-gl-MCV" kind="show" identifier="pickLocationForEditing" id="1Hk-IV-sxR"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -725,110 +719,10 @@
             </objects>
             <point key="canvasLocation" x="3881" y="422"/>
         </scene>
-        <!--Pick a location-->
-        <scene sceneID="cEm-VD-GzU">
-            <objects>
-                <viewController id="aCT-9E-6zR" customClass="AddPointLocationVC" customModule="Sightr" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7Cm-d5-f22"/>
-                        <viewControllerLayoutGuide type="bottom" id="dLc-zv-Wft"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="mqf-fs-bDI">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Izp-Ko-6jK" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Izp-Ko-6jK" firstAttribute="centerX" secondItem="mqf-fs-bDI" secondAttribute="centerX" id="7Aa-Gv-3Jp"/>
-                            <constraint firstItem="Izp-Ko-6jK" firstAttribute="centerY" secondItem="mqf-fs-bDI" secondAttribute="centerY" id="Aa7-YI-Hhi"/>
-                            <constraint firstItem="Izp-Ko-6jK" firstAttribute="height" secondItem="mqf-fs-bDI" secondAttribute="height" id="Tna-gc-7EB"/>
-                            <constraint firstItem="Izp-Ko-6jK" firstAttribute="width" secondItem="mqf-fs-bDI" secondAttribute="width" id="fvP-TH-Ohj"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Pick a location" id="5ZH-3W-neT">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="done" id="2NG-O9-azg">
-                                <connections>
-                                    <segue destination="xpZ-d0-9qo" kind="unwind" identifier="locationPicked" unwindAction="pickLocation:" id="14d-6V-9hz"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="search" id="KUx-mG-oNp">
-                                <connections>
-                                    <action selector="searchAddress:" destination="aCT-9E-6zR" id="CNl-rw-Fxn"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="doneButton" destination="2NG-O9-azg" id="zCI-RR-bBb"/>
-                        <outlet property="mapView" destination="Izp-Ko-6jK" id="Il4-au-fnR"/>
-                        <outlet property="searchButton" destination="KUx-mG-oNp" id="C8f-t6-fMx"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eof-rp-u24" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="xpZ-d0-9qo" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="4705" y="-317"/>
-        </scene>
-        <!--Pick a location-->
-        <scene sceneID="yDE-fE-sSc">
-            <objects>
-                <viewController id="NPK-gl-MCV" customClass="EditPointLocationVC" customModule="Sightr" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="IHY-ZG-NFB"/>
-                        <viewControllerLayoutGuide type="bottom" id="LIg-br-ffv"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ozU-YI-4iP">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K7c-58-fIY" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="K7c-58-fIY" firstAttribute="width" secondItem="ozU-YI-4iP" secondAttribute="width" id="9sQ-PR-Zmb"/>
-                            <constraint firstItem="K7c-58-fIY" firstAttribute="centerY" secondItem="ozU-YI-4iP" secondAttribute="centerY" id="Ps8-0C-eqf"/>
-                            <constraint firstItem="K7c-58-fIY" firstAttribute="centerX" secondItem="ozU-YI-4iP" secondAttribute="centerX" id="YZx-xr-69f"/>
-                            <constraint firstItem="K7c-58-fIY" firstAttribute="height" secondItem="ozU-YI-4iP" secondAttribute="height" id="rkk-xV-3AX"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Pick a location" id="7af-NA-p8Y">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="done" id="Rj9-g8-Igh">
-                                <connections>
-                                    <segue destination="CUG-n2-M2E" kind="unwind" identifier="locationPicked" unwindAction="pickLocation:" id="RuZ-cr-5mY"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="search" id="Jya-UX-zZs">
-                                <connections>
-                                    <action selector="searchAddress:" destination="NPK-gl-MCV" id="Zsr-yu-a0a"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="doneButton" destination="Rj9-g8-Igh" id="gNy-rs-unj"/>
-                        <outlet property="mapView" destination="K7c-58-fIY" id="Nzo-VG-O4t"/>
-                        <outlet property="searchButton" destination="Jya-UX-zZs" id="UYH-P1-FYn"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VZP-WU-i8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="CUG-n2-M2E" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="4705" y="422"/>
-        </scene>
         <!--Map-->
         <scene sceneID="NPQ-Wv-Kam">
             <objects>
-                <viewController id="LJf-06-wpi" sceneMemberID="viewController">
+                <viewController id="LJf-06-wpi" customClass="GuideMapVC" customModule="Sightr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bAS-pc-XiE"/>
                         <viewControllerLayoutGuide type="bottom" id="GXL-DA-TuG"/>
@@ -836,12 +730,27 @@
                     <view key="view" contentMode="scaleToFill" id="3eu-aV-le6">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pmn-zS-1DA" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pmn-zS-1DA" firstAttribute="height" secondItem="3eu-aV-le6" secondAttribute="height" id="8Vz-S2-zmv"/>
+                            <constraint firstItem="pmn-zS-1DA" firstAttribute="centerX" secondItem="3eu-aV-le6" secondAttribute="centerX" id="Asv-ws-mnf"/>
+                            <constraint firstItem="pmn-zS-1DA" firstAttribute="width" secondItem="3eu-aV-le6" secondAttribute="width" id="T3l-Iu-Ekz"/>
+                            <constraint firstItem="pmn-zS-1DA" firstAttribute="centerY" secondItem="3eu-aV-le6" secondAttribute="centerY" id="xex-jH-RUa"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" id="1DF-ZO-tqr"/>
                     <navigationItem key="navigationItem" title="Map" id="tiM-IY-Hxj">
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="r2M-9g-62l"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="pmn-zS-1DA" id="OR0-PQ-zMh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xiy-27-0Q2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

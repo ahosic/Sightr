@@ -26,10 +26,8 @@
 		859F656A1CC4ED4B001908B0 /* SightrModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F65691CC4ED4B001908B0 /* SightrModel.swift */; };
 		85C41AE71CCD0B9800AF1E2B /* PointDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C41AE61CCD0B9800AF1E2B /* PointDetailsVC.swift */; };
 		85F4F7251CCB7CFD009B0C9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F4F7241CCB7CFD009B0C9C /* Constants.swift */; };
-		85F4F7271CCBC295009B0C9C /* AddPointLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F4F7261CCBC295009B0C9C /* AddPointLocationVC.swift */; };
 		85F4F72A1CCBCE1B009B0C9C /* MapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F4F7291CCBCE1B009B0C9C /* MapTasks.swift */; };
 		85F4F72C1CCBFEE0009B0C9C /* EditPointVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F4F72B1CCBFEE0009B0C9C /* EditPointVC.swift */; };
-		85F4F72E1CCC024B009B0C9C /* EditPointLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F4F72D1CCC024B009B0C9C /* EditPointLocationVC.swift */; };
 		E9D24A4F0CD57ECFE336EA3C /* Pods_Sightr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B11C144631148E021A1D4A18 /* Pods_Sightr.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,10 +75,8 @@
 		859F65691CC4ED4B001908B0 /* SightrModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightrModel.swift; sourceTree = "<group>"; };
 		85C41AE61CCD0B9800AF1E2B /* PointDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointDetailsVC.swift; sourceTree = "<group>"; };
 		85F4F7241CCB7CFD009B0C9C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		85F4F7261CCBC295009B0C9C /* AddPointLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPointLocationVC.swift; sourceTree = "<group>"; };
 		85F4F7291CCBCE1B009B0C9C /* MapTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTasks.swift; sourceTree = "<group>"; };
 		85F4F72B1CCBFEE0009B0C9C /* EditPointVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPointVC.swift; sourceTree = "<group>"; };
-		85F4F72D1CCC024B009B0C9C /* EditPointLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPointLocationVC.swift; sourceTree = "<group>"; };
 		B11C144631148E021A1D4A18 /* Pods_Sightr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sightr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B46FAA5002C97F441883DDB5 /* Pods-Sightr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sightr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sightr/Pods-Sightr.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,9 +189,7 @@
 				851864201CC63B3A00C74F62 /* GuideDetailsVC.swift */,
 				850E690A1CC8FF920084F2C4 /* GuideMapVC.swift */,
 				85298F671CC92FC7006DBE11 /* AddPointVC.swift */,
-				85F4F7261CCBC295009B0C9C /* AddPointLocationVC.swift */,
 				85F4F72B1CCBFEE0009B0C9C /* EditPointVC.swift */,
-				85F4F72D1CCC024B009B0C9C /* EditPointLocationVC.swift */,
 				85C41AE61CCD0B9800AF1E2B /* PointDetailsVC.swift */,
 			);
 			name = ViewController;
@@ -426,14 +420,12 @@
 				85F4F72A1CCBCE1B009B0C9C /* MapTasks.swift in Sources */,
 				85298F641CC9234D006DBE11 /* GuidePoint.swift in Sources */,
 				851864211CC63B3A00C74F62 /* GuideDetailsVC.swift in Sources */,
-				85F4F72E1CCC024B009B0C9C /* EditPointLocationVC.swift in Sources */,
 				85F4F72C1CCBFEE0009B0C9C /* EditPointVC.swift in Sources */,
 				852CFBC41CC3F68A00C79779 /* GuidesVC.swift in Sources */,
 				850E690B1CC8FF920084F2C4 /* GuideMapVC.swift in Sources */,
 				852CFB9A1CC3B96300C79779 /* Sightr.xcdatamodeld in Sources */,
 				85298F661CC92A8F006DBE11 /* GuidePointCell.swift in Sources */,
 				852CFB921CC3B96300C79779 /* AppDelegate.swift in Sources */,
-				85F4F7271CCBC295009B0C9C /* AddPointLocationVC.swift in Sources */,
 				859F656A1CC4ED4B001908B0 /* SightrModel.swift in Sources */,
 				85C41AE71CCD0B9800AF1E2B /* PointDetailsVC.swift in Sources */,
 				85F4F7251CCB7CFD009B0C9C /* Constants.swift in Sources */,
