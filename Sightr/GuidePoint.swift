@@ -21,7 +21,12 @@ class GuidePoint {
     var radius:Double
     var address:String?
     
-    var image:UIImage?
+    var hasImage:Bool = false
+    var image:UIImage? {
+        didSet {
+            hasImage = true
+        }
+    }
     var description:String
     var link:String?
     

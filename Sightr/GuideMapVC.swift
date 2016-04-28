@@ -39,7 +39,9 @@ class GuideMapVC: UIViewController {
     }
     
     deinit {
-        mapView.removeObserver(self, forKeyPath: "myLocation")
+        if mapView != nil {
+            mapView.removeObserver(self, forKeyPath: "myLocation")
+        }
     }
     
     /***********  Observer methods ***********/
