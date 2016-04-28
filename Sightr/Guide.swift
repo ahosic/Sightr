@@ -1,9 +1,10 @@
 import Foundation
+import RealmSwift
 
-class Guide {
-    var id:String
-    var name:String
-    var timestamp:NSDate
+class Guide : Object {
+    dynamic var id:String = ""
+    dynamic var name:String = ""
+    dynamic var timestamp:NSDate = NSDate()
     var formattedTimeStamp:String {
         get {
             let formatter = NSDateFormatter()
@@ -13,9 +14,11 @@ class Guide {
             return formatter.stringFromDate(timestamp)
         }
     }
-    var points = [GuidePoint]()
+    let points = List<GuidePoint>()
     
-    init(name:String){
+    convenience init(name:String){
+        self.init()
+        
         self.id = NSUUID().UUIDString
         self.name = name
         self.timestamp = NSDate()
