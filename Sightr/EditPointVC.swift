@@ -25,7 +25,7 @@ class EditPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContr
         imagePicker.delegate = self
         
         self.pointTitle.text = point?.name
-        self.pointText.text = point?.description
+        self.pointText.text = point?.text
         self.pointLink.text = point?.link
         self.pointRadius.text = String(point!.radius)
         

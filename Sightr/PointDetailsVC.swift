@@ -22,7 +22,7 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         
         // Set Point data
         self.title = point?.name
-        pointDesc.text = point?.description
+        pointDesc.text = point?.text
         
         if let link = point?.link {
             if link != ""{

@@ -140,7 +140,7 @@ class GuideDetailsVC: UITableViewController {
                                    location: location!,
                                    address: address,
                                    radius: Double(radius!)!,
-                                   description: desc!,
+                                   text: desc!,
                                    link: link!,
                                    image: image)
             
@@ -160,7 +160,7 @@ class GuideDetailsVC: UITableViewController {
             let address = editPoint.pointAddress
             
             selectedPoint?.name = ttl!
-            selectedPoint?.description = desc!
+            selectedPoint?.text = desc!
             selectedPoint?.radius = Double(radius!)!
             selectedPoint?.link = link!
             selectedPoint?.image = image

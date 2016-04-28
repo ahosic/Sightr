@@ -27,17 +27,17 @@ class GuidePoint {
             hasImage = true
         }
     }
-    var description:String
+    var text:String
     var link:String?
     
-    init(name:String, location:CLLocationCoordinate2D, address:String?, radius:Double, description:String, link:String, image:UIImage?){
+    init(name:String, location:CLLocationCoordinate2D, address:String?, radius:Double, text:String, link:String, image:UIImage?){
         self.id = NSUUID().UUIDString
         self.name = name
         
         self.address = address
         self.radius = radius
         
-        self.description = description
+        self.text = text
         self.link = link
         self.image = image
         
