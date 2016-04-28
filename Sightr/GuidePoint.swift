@@ -6,7 +6,18 @@ class GuidePoint {
     var id:String
     var name:String
     
-    var location:CLLocationCoordinate2D
+    var latitude:Double
+    var longitude:Double
+    var location:CLLocationCoordinate2D {
+        get {
+            return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        }
+        set(newLocation) {
+            self.latitude = newLocation.latitude
+            self.longitude = newLocation.longitude
+        }
+    }
+    
     var radius:Double
     var address:String?
     
@@ -18,12 +29,15 @@ class GuidePoint {
         self.id = NSUUID().UUIDString
         self.name = name
         
-        self.location = location
         self.address = address
         self.radius = radius
         
         self.description = description
         self.link = link
         self.image = image
+        
+        self.longitude = 0
+        self.latitude = 0
+        self.location = location
     }
 }
