@@ -2,7 +2,7 @@ import Foundation
 class SightrModel {
     
     // Singleton pattern
-    class var sharedInstance:SightrModel {
+    class var defaultModel:SightrModel {
         struct Singleton {
             static let model = SightrModel()
         }

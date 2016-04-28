@@ -56,7 +56,7 @@ class GuidesVC: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(guideCell) as! GuideCell
-        let guide = SightrModel.sharedInstance.guides[indexPath.row]
+        let guide = SightrModel.defaultModel.guides[indexPath.row]
         
         cell.name.text = guide.name
         cell.itemsCount.text = String(guide.points.count)
@@ -69,7 +69,7 @@ class GuidesVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return SightrModel.sharedInstance.guides.count;
+        return SightrModel.defaultModel.guides.count;
     }
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
@@ -104,7 +104,7 @@ class GuidesVC: UITableViewController {
             
             if let text = name.text {
                 // Add new Guide
-                SightrModel.sharedInstance.createGuide(text)
+                SightrModel.defaultModel.createGuide(text)
             }
         }
         
@@ -138,8 +138,8 @@ class GuidesVC: UITableViewController {
                 let points = barVC.viewControllers![0] as! GuideDetailsVC
                 let map = barVC.viewControllers![1] as! GuideMapVC
                 
-                points.guide = SightrModel.sharedInstance.guides[idx.row]
-                map.guide = SightrModel.sharedInstance.guides[idx.row]
+                points.guide = SightrModel.defaultModel.guides[idx.row]
+                map.guide = SightrModel.defaultModel.guides[idx.row]
                 
                 // Back Item Appearance
                 let backItem = UIBarButtonItem()
@@ -158,7 +158,7 @@ class GuidesVC: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {(_) in })
         let trashAction = UIAlertAction(title: "Remove", style: .Destructive) { (_) in
             // Remove guide
-            SightrModel.sharedInstance.removeGuide(index)
+            SightrModel.defaultModel.removeGuide(index)
         }
         
         // Add actions
@@ -170,7 +170,7 @@ class GuidesVC: UITableViewController {
     }
     
     func editGuide(index:Int){
-        let guide = SightrModel.sharedInstance.guides[index]
+        let guide = SightrModel.defaultModel.guides[index]
         let alertController = UIAlertController(title: "Edit Guide", message: "Set the guide's name", preferredStyle: .Alert)
         
         // Actions
@@ -182,7 +182,7 @@ class GuidesVC: UITableViewController {
                 guide.name = text
                 
                 // Update guide
-                SightrModel.sharedInstance.updateGuide(guide)
+                SightrModel.defaultModel.updateGuide(guide)
             }
         }
         

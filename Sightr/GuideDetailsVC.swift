@@ -144,7 +144,7 @@ class GuideDetailsVC: UITableViewController {
                                    link: link!,
                                    image: image)
             
-            SightrModel.sharedInstance.addPointToGuide(guide!, point: point)
+            SightrModel.defaultModel.addPointToGuide(guide!, point: point)
         }
     }
     
@@ -167,7 +167,7 @@ class GuideDetailsVC: UITableViewController {
             selectedPoint?.location = location!
             selectedPoint?.address = address
             
-            SightrModel.sharedInstance.updatePoint(self.guide!, point: self.selectedPoint!)
+            SightrModel.defaultModel.updatePoint(self.guide!, point: self.selectedPoint!)
             selectedPoint = nil
         }
     }
@@ -181,7 +181,7 @@ class GuideDetailsVC: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {(_) in })
         let trashAction = UIAlertAction(title: "Remove", style: .Destructive) { (_) in
             // Remove guide
-            SightrModel.sharedInstance.removePointOfGuide(self.guide!, index: index)
+            SightrModel.defaultModel.removePointOfGuide(self.guide!, index: index)
         }
         
         // Add actions

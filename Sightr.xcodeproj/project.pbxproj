@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8505A63C1CD29CAB0047F4DD /* PersistencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8505A63B1CD29CAB0047F4DD /* PersistencyModel.swift */; };
 		850E690B1CC8FF920084F2C4 /* GuideMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850E690A1CC8FF920084F2C4 /* GuideMapVC.swift */; };
 		8518641F1CC620E700C74F62 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8518641E1CC620E700C74F62 /* Guide.swift */; };
 		851864211CC63B3A00C74F62 /* GuideDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851864201CC63B3A00C74F62 /* GuideDetailsVC.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		67452073B6D86F617F24A444 /* Pods-Sightr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sightr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Sightr/Pods-Sightr.release.xcconfig"; sourceTree = "<group>"; };
+		8505A63B1CD29CAB0047F4DD /* PersistencyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistencyModel.swift; sourceTree = "<group>"; };
 		850E690A1CC8FF920084F2C4 /* GuideMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideMapVC.swift; sourceTree = "<group>"; };
 		8518641E1CC620E700C74F62 /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		851864201CC63B3A00C74F62 /* GuideDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideDetailsVC.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				859F65691CC4ED4B001908B0 /* SightrModel.swift */,
 				8518641E1CC620E700C74F62 /* Guide.swift */,
 				85298F631CC9234D006DBE11 /* GuidePoint.swift */,
+				8505A63B1CD29CAB0047F4DD /* PersistencyModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				850E690B1CC8FF920084F2C4 /* GuideMapVC.swift in Sources */,
 				852CFB9A1CC3B96300C79779 /* Sightr.xcdatamodeld in Sources */,
 				85298F661CC92A8F006DBE11 /* GuidePointCell.swift in Sources */,
+				8505A63C1CD29CAB0047F4DD /* PersistencyModel.swift in Sources */,
 				852CFB921CC3B96300C79779 /* AppDelegate.swift in Sources */,
 				859F656A1CC4ED4B001908B0 /* SightrModel.swift in Sources */,
 				85C41AE71CCD0B9800AF1E2B /* PointDetailsVC.swift in Sources */,
