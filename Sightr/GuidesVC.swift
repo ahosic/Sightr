@@ -39,6 +39,8 @@ class GuidesVC: UITableViewController {
             self.tableView.beginUpdates()
             
             switch type! {
+            case ModelOperationType.Set:
+                self.tableView.reloadData()
             case ModelOperationType.Add:
                 self.tableView.insertRowsAtIndexPaths(idxPath!, withRowAnimation: .Automatic)
             case ModelOperationType.Update:
@@ -179,10 +181,8 @@ class GuidesVC: UITableViewController {
             let name = alertController.textFields![0] as UITextField
             
             if let text = name.text {
-                guide.name = text
-                
                 // Update guide
-                SightrModel.defaultModel.updateGuide(guide)
+                SightrModel.defaultModel.updateGuide(guide, name: text)
             }
         }
         

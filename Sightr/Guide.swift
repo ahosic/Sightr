@@ -16,6 +16,10 @@ class Guide : Object {
     }
     let points = List<GuidePoint>()
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
     convenience init(name:String){
         self.init()
         

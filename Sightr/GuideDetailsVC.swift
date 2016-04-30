@@ -159,15 +159,16 @@ class GuideDetailsVC: UITableViewController {
             let location = editPoint.pointLocation
             let address = editPoint.pointAddress
             
-            selectedPoint?.name = ttl!
-            selectedPoint?.text = desc!
-            selectedPoint?.radius = Double(radius!)!
-            selectedPoint?.link = link!
-            selectedPoint?.image = image
-            selectedPoint?.location = location!
-            selectedPoint?.address = address
+            // Create and save point
+            let data = GuidePoint(name: ttl!,
+                                   location: location!,
+                                   address: address,
+                                   radius: Double(radius!)!,
+                                   text: desc!,
+                                   link: link!,
+                                   image: image)
             
-            SightrModel.defaultModel.updatePoint(self.guide!, point: self.selectedPoint!)
+            SightrModel.defaultModel.updatePoint(self.guide!, point: self.selectedPoint!, data: data)
             selectedPoint = nil
         }
     }

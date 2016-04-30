@@ -29,8 +29,11 @@ class EditPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContr
         self.pointLink.text = point?.link
         self.pointRadius.text = String(point!.radius)
         
-        if let image = point?.image {
-            self.pointImage.image = image
+        if (point?.hasImage)! {
+            // Load image from image directory
+            let path = SightrModel.defaultModel.getImagesDirectory().stringByAppendingPathComponent((point?.id)! + ".jpg")
+            self.pointImage.image = UIImage(contentsOfFile: path)
+            
             self.imageCell.hidden = false
         }
         

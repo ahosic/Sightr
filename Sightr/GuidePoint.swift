@@ -23,16 +23,16 @@ class GuidePoint : Object {
     dynamic var address:String? = nil
     
     dynamic var hasImage:Bool = false
-    var image:UIImage? {
-        didSet {
-            hasImage = true
-        }
-    }
+    var image:UIImage?
     dynamic var text:String = ""
     dynamic var link:String? = nil
     
     override static func ignoredProperties() -> [String] {
         return ["location", "image"]
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
     }
     
     convenience init(name:String, location:CLLocationCoordinate2D, address:String?, radius:Double, text:String, link:String, image:UIImage?){
@@ -51,5 +51,11 @@ class GuidePoint : Object {
         self.longitude = 0
         self.latitude = 0
         self.location = location
+        
+        if image != nil {
+            self.hasImage = true
+        } else {
+            self.hasImage = false
+        }
     }
 }

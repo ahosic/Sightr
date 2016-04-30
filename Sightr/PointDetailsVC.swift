@@ -30,8 +30,11 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
             }
         }
         
-        if let img = point?.image {
-            image.image = img
+        if (point?.hasImage)! {
+            // Load image from image directory
+            let path = SightrModel.defaultModel.getImagesDirectory().stringByAppendingPathComponent((point?.id)! + ".jpg")
+            image.image = UIImage(contentsOfFile: path)
+            image.hidden = false
         }
         
         // Adjust size of textview to actual length of text
