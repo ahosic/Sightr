@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Sightr requires access to your phone’s location in order to create and notify you about guide points.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Allowing access to your location, you can spot your position on the map.</string>
 	<key>UIAppFonts</key>

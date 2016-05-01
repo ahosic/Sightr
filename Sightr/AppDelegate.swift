@@ -1,15 +1,38 @@
 import UIKit
 import CoreData
 import GoogleMaps
+import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
     
     var window: UIWindow?
-    var model:SightrModel?
+    let locationManager = CLLocationManager()
+    
+    func showPointDetails(guideID: String, pointID:String) {
+        if let point = SightrModel.defaultModel.pointOfGuide(guideID, pointID: pointID) {
+            // Create ViewController instance
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let destination:PointDetailsVC = storyboard.instantiateViewControllerWithIdentifier("PointDetails") as! PointDetailsVC
+            destination.point = point
+            
+            let rootViewController = self.window!.rootViewController as! UINavigationController
+            
+            // Push to destination ViewController
+            rootViewController.pushViewController(destination, animated: true)
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        // Create local notification
+        NotificationModel.defaultModel.createNotificationForGuidePoint(region.identifier)
+    }
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        
         // Google Maps API Key
         GMSServices.provideAPIKey("AIzaSyCYxNbMIjWE2BkIo5Frin3g6dGUuNecbUk")
         
@@ -22,7 +45,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppearace.barTintColor = UIColor(red: 84/255, green: 225/255, blue: 214/255, alpha: 1.0)
         navigationBarAppearace.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Geometria-Light", size: 20)!, NSForegroundColorAttributeName:UIColor.whiteColor()]
         
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         return true
+    }
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        
+        let alert = UIAlertController(title: notification.alertTitle, message: "You are near a cool sight!", preferredStyle: .Alert)
+        
+        // Actions
+        let dismissAction = UIAlertAction(title: "Got it", style: .Cancel, handler: nil)
+        
+        let showAction = UIAlertAction(title: "Show me", style: .Default) {
+            (action) in
+            // Get point and guide id
+            let guideID = notification.userInfo!["guideID"] as! String
+            let pointID = notification.userInfo!["pointID"] as! String
+            
+            // Go to point details
+            self.showPointDetails(guideID, pointID: pointID)
+        }
+        
+        alert.addAction(dismissAction)
+        alert.addAction(showAction)
+        
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
+        if let identifier = identifier {
+            switch identifier {
+            case "GOTIT":
+                UIApplication.sharedApplication().cancelLocalNotification(notification)
+                UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+            case "SHOW":
+                // Get point and guide id
+                let guideID = notification.userInfo!["guideID"] as! String
+                let pointID = notification.userInfo!["pointID"] as! String
+                
+                UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+                
+                // Go to point details
+                self.showPointDetails(guideID, pointID: pointID)
+            default:
+                break
+            }
+        }
+        
+        completionHandler()
     }
     
     func applicationWillResignActive(application: UIApplication) {

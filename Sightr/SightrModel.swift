@@ -16,6 +16,8 @@ class SightrModel {
     
     init() {
         load()
+        GeofencingModel.defaultModel.load()
+        NotificationModel.defaultModel.setUpNotifications()
     }
     
     func load() {
@@ -76,11 +78,15 @@ class SightrModel {
         // Get guide
         let guide = guides[index]
         
+        let guideID = guide.id
+        var removedPoints = [NSString]()
         // Remove images of points
         for point in guide.points {
             if point.hasImage {
                 removeImageFromStorage(point.id)
             }
+            
+            removedPoints.append(point.id)
         }
         
         guides.removeAtIndex(index)
@@ -92,7 +98,7 @@ class SightrModel {
         }
         
         // Notify observers
-        let info = ["operationType" : NSString(string: ModelOperationType.Removed), "indices" : [NSIndexPath(forRow: index, inSection: 0)]]
+        let info = ["operationType" : NSString(string: ModelOperationType.Removed), "indices" : [NSIndexPath(forRow: index, inSection: 0)], "guideID" : NSString(string: guideID), "removedPoints" : removedPoints]
         NSNotificationCenter.defaultCenter().postNotificationName(ModelNotification.GuidesChanged, object: nil, userInfo: info)
     }
     
@@ -158,11 +164,12 @@ class SightrModel {
     }
     
     func removePointOfGuide(guide:Guide, index:Int) {
+        let point = guide.points[index]
+        let pointID = point.id
+        
         // Remove from database
         let realm = try! Realm()
         try! realm.write {
-            let point = guide.points[index]
-            
             // Remove image from storage
             if point.hasImage {
                 removeImageFromStorage(point.id)
@@ -177,7 +184,7 @@ class SightrModel {
         updateGuide(guide, name: nil)
         
         // Notify observers
-        let info = ["operationType" : NSString(string: ModelOperationType.Removed), "guideID" : NSString(string: guide.id) , "indices" : [NSIndexPath(forRow: index, inSection: 0)]]
+        let info = ["operationType" : NSString(string: ModelOperationType.Removed), "guideID" : NSString(string: guide.id), "pointID" : NSString(string: pointID), "indices" : [NSIndexPath(forRow: index, inSection: 0)]]
         NSNotificationCenter.defaultCenter().postNotificationName(ModelNotification.PointsChanged, object: nil, userInfo: info)
     }
     
@@ -186,6 +193,18 @@ class SightrModel {
     func indexOfGuide(guide:Guide) -> Int? {
         let idx = guides.indexOf({(g:Guide) -> Bool in
             if g.id == guide.id {
+                return true
+            }
+            
+            return false
+        })
+        
+        return idx;
+    }
+    
+    func indexOfGuide(id:String) -> Int? {
+        let idx = guides.indexOf({(g:Guide) -> Bool in
+            if g.id == id {
                 return true
             }
             
@@ -205,6 +224,36 @@ class SightrModel {
         })
         
         return idx
+    }
+    
+    func indexOfPoint(guide:Guide, id:String) -> Int? {
+        let idx = guide.points.indexOf({(point:GuidePoint) -> Bool in
+            if point.id == id {
+                return true
+            }
+            
+            return false
+        })
+        
+        return idx
+    }
+    
+    func guideByID(id:String) -> Guide? {
+        if let index = indexOfGuide(id) {
+            return guides[index]
+        }
+        
+        return nil
+    }
+    
+    func pointOfGuide(guideID:String, pointID:String) -> GuidePoint? {
+        if let guide = guideByID(guideID) {
+            if let pointIndex = indexOfPoint(guide, id: pointID) {
+                return guide.points[pointIndex]
+            }
+        }
+        
+        return nil
     }
     
     func saveImageToStorage(id:String, image: UIImage) {

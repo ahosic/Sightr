@@ -88,7 +88,7 @@
         <!--Point-->
         <scene sceneID="mxg-Aw-JBX">
             <objects>
-                <viewController id="FQ1-PO-ftc" customClass="PointDetailsVC" customModule="Sightr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PointDetails" id="FQ1-PO-ftc" customClass="PointDetailsVC" customModule="Sightr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3X4-AP-6ZF"/>
                         <viewControllerLayoutGuide type="bottom" id="Viq-L7-gZ6"/>
