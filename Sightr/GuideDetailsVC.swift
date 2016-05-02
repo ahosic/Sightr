@@ -100,7 +100,35 @@ class GuideDetailsVC: UITableViewController {
             self.removePoint(index.row)
         })
         
-        return [trash, edit]
+        let share = UITableViewRowAction(style: .Normal, title: "Share") {
+            (action, path) in
+            let point = self.guide?.points[path.row]
+            
+            // Construct string for sharing
+            var textToShare = "\((point?.name)!)\n\n\((point?.text)!)\n\n"
+            
+            if point?.address != nil && point?.address != "" {
+                textToShare = textToShare + "Location: \((point?.address)!)"
+                
+            }
+            
+            var objectsToShare:NSArray = []
+            if (point?.hasImage)! {
+                // Load image from image directory
+                let path = SightrModel.defaultModel.getImagesDirectory().stringByAppendingPathComponent((point?.id)! + ".jpg")
+                if let image = UIImage(contentsOfFile: path) {
+                    objectsToShare = [textToShare, image]
+                }
+                
+            } else {
+                objectsToShare = [textToShare]
+            }
+            
+            let activity = UIActivityViewController(activityItems: objectsToShare as [AnyObject], applicationActivities: nil)
+            self.presentViewController(activity, animated: true, completion: nil)
+        }
+        
+        return [trash, edit, share]
     }
     
     /***********  Actions ***********/
