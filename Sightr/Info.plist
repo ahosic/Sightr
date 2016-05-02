@@ -2,6 +2,41 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.mime-type</key>
+				<string>application/sightr</string>
+				<key>public.filename-extension</key>
+				<string>sightr</string>
+			</dict>
+			<key>UTTypeDescription</key>
+			<string>Sightr Guide Document</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeIdentifier</key>
+			<string>at.fhooe.mc.hosic.Sightr.sightr</string>
+		</dict>
+	</array>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>at.fhooe.mc.hosic.Sightr.sightr</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleTypeName</key>
+			<string>Sightr Guide Document</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+		</dict>
+	</array>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Sightr requires access to your phone’s location in order to create and notify you about guide points.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
