@@ -8,6 +8,7 @@ target 'Sightr‘ do
 
 pod 'RealmSwift'
 pod 'GoogleMaps'
+pod 'ImageViewer'
 
 end
 
