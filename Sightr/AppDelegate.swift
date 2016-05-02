@@ -9,6 +9,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     let locationManager = CLLocationManager()
     
+    /***********  UTI ***********/
+    
+    func importFromURL(url:NSURL) -> NSData? {
+        let data = NSData(contentsOfURL: url)
+        return data
+    }
+    
+    /***********  Geofencing ***********/
+    
     func showPointDetails(guideID: String, pointID:String) {
         if let point = SightrModel.defaultModel.pointOfGuide(guideID, pointID: pointID) {
             // Create ViewController instance
@@ -28,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         NotificationModel.defaultModel.createNotificationForGuidePoint(region.identifier)
     }
     
+    /***********  System related ***********/
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         locationManager.delegate = self
