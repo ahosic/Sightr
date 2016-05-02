@@ -166,7 +166,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Point" id="edp-Zf-dYn"/>
+                    <navigationItem key="navigationItem" title="Point" id="edp-Zf-dYn">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="PYt-kW-6zE">
+                            <connections>
+                                <action selector="share:" destination="FQ1-PO-ftc" id="1Xv-N0-5VQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="image" destination="4ym-hz-nPu" id="Ki4-H8-X9u"/>
                         <outlet property="mapView" destination="nAl-EZ-baE" id="BH2-Ak-bPn"/>
