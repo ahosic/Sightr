@@ -35,6 +35,10 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
             let path = SightrModel.defaultModel.getImagesDirectory().stringByAppendingPathComponent((point?.id)! + ".jpg")
             image.image = UIImage(contentsOfFile: path)
             image.hidden = false
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PointDetailsVC.imageTapped(_:)))
+            image.userInteractionEnabled = true
+            image.addGestureRecognizer(tapGestureRecognizer)
         }
         
         // Adjust size of textview to actual length of text
@@ -75,6 +79,35 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         }
     }
     
+    /***********  Actions ***********/
+    
+    func imageTapped(img:AnyObject) {
+    }
+    
+    @IBAction func share(sender: AnyObject) {
+        // Construct string for sharing
+        var textToShare = "\((point?.name)!)\n\((point?.text)!)\n"
+        
+        if point?.address != nil && point?.address != "" {
+            textToShare = textToShare + "Location: \((point?.address)!)"
+            
+        }
+        
+        var objectsToShare:NSArray = []
+        if (point?.hasImage)! {
+            // Load image from image directory
+            let path = SightrModel.defaultModel.getImagesDirectory().stringByAppendingPathComponent((point?.id)! + ".jpg")
+            if let image = UIImage(contentsOfFile: path) {
+                objectsToShare = [textToShare, image]
+            }
+            
+        } else {
+            objectsToShare = [textToShare]
+        }
+        
+        let activity = UIActivityViewController(activityItems: objectsToShare as [AnyObject], applicationActivities: nil)
+        self.presentViewController(activity, animated: true, completion: nil)
+    }
     /***********  Helper methods ***********/
     
     func addLocationMarker(location:CLLocationCoordinate2D){
