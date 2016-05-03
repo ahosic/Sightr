@@ -16,6 +16,8 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     var locationMarker:GMSMarker!
     let zoomLevel:Float = 14.0
     let markerColor = UIColor(red: 90/255, green: 200/255, blue: 251/255, alpha: 1.0)
+    let markerImage = UIImage(named: "Pin")
+    let markerAnchor = CGPoint(x: 0.25925925925926, y: 1.0)
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -122,14 +124,15 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         locationMarker = GMSMarker(position: location)
         locationMarker.map = mapView
         locationMarker.appearAnimation = kGMSMarkerAnimationPop
-        locationMarker.icon = GMSMarker.markerImageWithColor(markerColor)
+        locationMarker.icon = markerImage
+        locationMarker.groundAnchor = markerAnchor
         locationMarker.opacity = 0.87
         
         // Draw the notification area
         let circle = GMSCircle(position: location, radius: point!.radius)
         
-        circle.fillColor = UIColor(red: 90/255, green: 200/255, blue: 251/255, alpha: 0.24)
-        circle.strokeColor = UIColor(red: 90/255, green: 200/255, blue: 251/255, alpha: 1)
+        circle.fillColor = UIColor(red: 84/255, green: 225/255, blue: 214/255, alpha: 0.24)
+        circle.strokeColor = UIColor(red: 31/255, green: 173/255, blue: 162/255, alpha: 1)
         circle.strokeWidth = 1
         
         circle.map = mapView;
