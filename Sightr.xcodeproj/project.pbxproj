@@ -22,6 +22,7 @@
 		852CFBB51CC3B96300C79779 /* SightrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852CFBB41CC3B96300C79779 /* SightrUITests.swift */; };
 		852CFBC41CC3F68A00C79779 /* GuidesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852CFBC31CC3F68A00C79779 /* GuidesVC.swift */; };
 		852CFBC71CC4024600C79779 /* Geometria_Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 852CFBC61CC4024600C79779 /* Geometria_Light.otf */; };
+		855490DE1CD7C5C100191692 /* Quicksand-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 855490DD1CD7C5C100191692 /* Quicksand-Regular.otf */; };
 		85956BAF1CD60AEE00E94ABA /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85956BAE1CD60AEE00E94ABA /* NotificationModel.swift */; };
 		859F65671CC4EBC3001908B0 /* GuideCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F65661CC4EBC3001908B0 /* GuideCell.swift */; };
 		859F656A1CC4ED4B001908B0 /* SightrModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859F65691CC4ED4B001908B0 /* SightrModel.swift */; };
@@ -73,6 +74,7 @@
 		852CFBB61CC3B96300C79779 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		852CFBC31CC3F68A00C79779 /* GuidesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuidesVC.swift; sourceTree = "<group>"; };
 		852CFBC61CC4024600C79779 /* Geometria_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Geometria_Light.otf; sourceTree = "<group>"; };
+		855490DD1CD7C5C100191692 /* Quicksand-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.otf"; sourceTree = "<group>"; };
 		85956BAE1CD60AEE00E94ABA /* NotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		859F65661CC4EBC3001908B0 /* GuideCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideCell.swift; sourceTree = "<group>"; };
 		859F65691CC4ED4B001908B0 /* SightrModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightrModel.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		852CFBC51CC401F300C79779 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				855490DD1CD7C5C100191692 /* Quicksand-Regular.otf */,
 				852CFBC61CC4024600C79779 /* Geometria_Light.otf */,
 			);
 			name = Ressources;
@@ -348,6 +351,7 @@
 				852CFB9C1CC3B96300C79779 /* Assets.xcassets in Resources */,
 				852CFBC71CC4024600C79779 /* Geometria_Light.otf in Resources */,
 				852CFB971CC3B96300C79779 /* Main.storyboard in Resources */,
+				855490DE1CD7C5C100191692 /* Quicksand-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
