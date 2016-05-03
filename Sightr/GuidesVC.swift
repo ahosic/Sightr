@@ -39,8 +39,6 @@ class GuidesVC: UITableViewController {
             self.tableView.beginUpdates()
             
             switch type! {
-            case ModelOperationType.Set:
-                self.tableView.reloadData()
             case ModelOperationType.Add:
                 self.tableView.insertRowsAtIndexPaths(idxPath!, withRowAnimation: .Automatic)
             case ModelOperationType.Update:
@@ -60,8 +58,10 @@ class GuidesVC: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(guideCell) as! GuideCell
         let guide = SightrModel.defaultModel.guides[indexPath.row]
         
+        cell.guideID = guide.id
         cell.name.text = guide.name
         cell.itemsCount.text = String(guide.points.count)
+        cell.activationStatus.on = guide.isActivated
         
         return cell;
     }
@@ -95,6 +95,13 @@ class GuidesVC: UITableViewController {
     }
     
     /***********  Actions ***********/
+    
+    @IBAction func activationChanged(sender: UISwitch) {
+        let cell = sender.superview?.superview as! GuideCell
+        if let id = cell.guideID {
+            SightrModel.defaultModel.toggleActivationOfGuide(id)
+        }
+    }
     
     @IBAction func createGuide(sender: UIBarButtonItem) {
         let alertController = UIAlertController(title: "New Guide", message: "Just enter a name", preferredStyle: .Alert)
