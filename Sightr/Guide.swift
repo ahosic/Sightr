@@ -4,6 +4,7 @@ import RealmSwift
 class Guide : Object {
     dynamic var id:String = ""
     dynamic var name:String = ""
+    dynamic var isActivated:Bool = false
     dynamic var timestamp:NSDate = NSDate()
     var formattedTimeStamp:String {
         get {
@@ -25,6 +26,7 @@ class Guide : Object {
         
         self.id = NSUUID().UUIDString
         self.name = name
+        self.isActivated = false
         self.timestamp = NSDate()
     }
 }
