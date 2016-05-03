@@ -55,6 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         navigationBarAppearace.barTintColor = UIColor(red: 84/255, green: 225/255, blue: 214/255, alpha: 1.0)
         navigationBarAppearace.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Geometria-Light", size: 20)!, NSForegroundColorAttributeName:UIColor.whiteColor()]
         
+        UITabBar.appearance().tintColor = UIColor(red: 84/255, green: 225/255, blue: 214/255, alpha: 1.0)
+        
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         return true
     }
