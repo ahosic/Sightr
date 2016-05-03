@@ -121,7 +121,7 @@ class EditPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContr
     }
     
     func showActionsForImagePicking() {
-        let imagePickerOptions = UIAlertController(title: nil, message: "Choose a image source", preferredStyle: .ActionSheet)
+        let imagePickerOptions = UIAlertController(title: nil, message: "Choose an image source", preferredStyle: .ActionSheet)
         
         // Actions
         let takeAction = UIAlertAction(title: "Take a photo", style: .Default, handler: takePhoto)
