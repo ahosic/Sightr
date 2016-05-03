@@ -30,14 +30,35 @@ class GeofencingModel {
         // Get operation type
         let type = notification.userInfo?["operationType"] as? NSString
         
-        // Get ID of Guide
-        let guideID = notification.userInfo?["guideID"] as? NSString
+        // Get changed index
+        let idxPath = notification.userInfo?["indices"] as? [NSIndexPath]
         
-        if type! == ModelOperationType.Removed {
+        switch type! {
+        case ModelOperationType.Activated:
+            
+            if let idxPath = idxPath {
+                guideActivated(idxPath)
+            }
+            
+        case ModelOperationType.Deactivated:
+            
+            if let idxPath = idxPath {
+                guideDeactivated(idxPath)
+            }
+            
+        case ModelOperationType.Removed:
+            
+            // Get ID of Guide
+            let guideID = notification.userInfo?["guideID"] as? NSString
+            
+            // Removed Points
             let removedPoints = notification.userInfo?["removedPoints"] as? [NSString]
+            
             for pointID in removedPoints! {
                 remove(guideID! as String, pointID: pointID as String)
             }
+        default:
+            break
         }
     }
     
@@ -54,21 +75,50 @@ class GeofencingModel {
         if let guideIdx = SightrModel.defaultModel.indexOfGuide(id! as String) {
             let guide = SightrModel.defaultModel.guides[guideIdx]
             
-            switch type! {
-            case ModelOperationType.Add:
-                add(guide, idxPaths: idxPath!)
-            case ModelOperationType.Update:
-                update(guide, idxPaths: idxPath!)
-            case ModelOperationType.Removed:
-                let id = notification.userInfo?["pointID"] as? NSString
-                remove(guide.id, pointID: id! as String)
-            default:
-                break
+            if guide.isActivated {
+                switch type! {
+                case ModelOperationType.Add:
+                    add(guide, idxPaths: idxPath!)
+                case ModelOperationType.Update:
+                    update(guide, idxPaths: idxPath!)
+                case ModelOperationType.Removed:
+                    let id = notification.userInfo?["pointID"] as? NSString
+                    remove(guide.id, pointID: id! as String)
+                default:
+                    break
+                }
             }
         }
     }
     
     /***********  Geofencing methods ***********/
+    
+    func guideActivated(idxPaths: [NSIndexPath]) {
+        for idx in idxPaths {
+            let guide = SightrModel.defaultModel.guides[idx.row]
+            
+            // Add Geofences for all GuidePoints
+            for point in guide.points {
+                // Create Geofence
+                let geoID = guide.id + ";" + point.id
+                let region = createGeofence(point.location, radius: point.radius, identifier: geoID)
+                
+                // Add Geofence
+                locationManager.startMonitoringForRegion(region)
+            }
+        }
+    }
+    
+    func guideDeactivated(idxPaths: [NSIndexPath]) {
+        for idx in idxPaths {
+            let guide = SightrModel.defaultModel.guides[idx.row]
+            
+            // Remove all Geofences for GuidePoints
+            for point in guide.points {
+                remove(guide.id, pointID: point.id)
+            }
+        }
+    }
     
     func add(guide:Guide, idxPaths:[NSIndexPath]) {
         for idx in idxPaths {
