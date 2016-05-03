@@ -102,6 +102,28 @@ class SightrModel {
         NSNotificationCenter.defaultCenter().postNotificationName(ModelNotification.GuidesChanged, object: nil, userInfo: info)
     }
     
+    func toggleActivationOfGuide(id:String) {
+        let realm = try! Realm()
+        try! realm.write {
+            if let guide = guideByID(id) {
+                guide.isActivated = !guide.isActivated
+                
+                let idx = indexOfGuide(id)
+                var info:[NSObject : AnyObject]?
+                
+                if guide.isActivated {
+                    
+                    info = ["operationType" : NSString(string: ModelOperationType.Activated), "indices" : [NSIndexPath(forRow: idx!, inSection: 0)]]
+                } else {
+                    info = ["operationType" : NSString(string: ModelOperationType.Deactivated), "indices" : [NSIndexPath(forRow: idx!, inSection: 0)]]
+                }
+                
+                // Notify observers
+                NSNotificationCenter.defaultCenter().postNotificationName(ModelNotification.GuidesChanged, object: nil, userInfo: info)
+            }
+        }
+    }
+    
     /***********  Guide Points ***********/
     
     func addPointToGuide(guide:Guide, point:GuidePoint){
