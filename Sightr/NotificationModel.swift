@@ -25,7 +25,7 @@ class NotificationModel {
         // Action: Show guide point
         let show = UIMutableUserNotificationAction()
         show.identifier = "SHOW"
-        show.title = "Show"
+        show.title = "Show me"
         show.activationMode = UIUserNotificationActivationMode.Foreground
         show.authenticationRequired = true
         show.destructive = false
@@ -48,7 +48,7 @@ class NotificationModel {
         let pointID = idArr[1]
         
         if let guide = SightrModel.defaultModel.guideByID(guideID) {
-            if let point = SightrModel.defaultModel.pointOfGuide(guideID, pointID: pointID) {
+            if let point = SightrModel.defaultModel.pointByID(guideID, pointID: pointID) {
                 
                 // Create local notification
                 let notification = UILocalNotification()
