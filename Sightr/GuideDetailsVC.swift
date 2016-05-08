@@ -90,7 +90,7 @@ class GuideDetailsVC: UITableViewController {
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let edit = UITableViewRowAction(style: .Normal, title: "Edit", handler: {action, index in
-            self.selectedPoint = self.guide?.points[indexPath.row]
+            self.selectedPoint = self.guide?.points[index.row]
             self.performSegueWithIdentifier("editPoint", sender: tableView.cellForRowAtIndexPath(indexPath))
         })
         
@@ -115,7 +115,8 @@ class GuideDetailsVC: UITableViewController {
             var objectsToShare:NSArray = []
             if (point?.hasImage)! {
                 // Load image from image directory
-                let path = SightrModel.defaultModel.getImagesDirectory().stringByAppendingPathComponent((point?.id)! + ".jpg")
+                
+                let path = FileAccessModel.defaultModel.getGuideDirectory((self.guide?.id)!).stringByAppendingPathComponent((point?.imageName)!)
                 if let image = UIImage(contentsOfFile: path) {
                     objectsToShare = [textToShare, image]
                 }
@@ -137,12 +138,14 @@ class GuideDetailsVC: UITableViewController {
         if segue.identifier == "editPoint" {
             if let destination = segue.destinationViewController as? EditPointVC {
                 destination.point = selectedPoint
+                destination.guideID = self.guide?.id
             }
         }
         
         if segue.identifier == "showPointDetails" {
             if let idx = tableView.indexPathForCell(sender as! GuidePointCell) {
                 (segue.destinationViewController as! PointDetailsVC).point = self.guide?.points[idx.row]
+                (segue.destinationViewController as! PointDetailsVC).guideID = self.guide?.id
             }
         }
         
@@ -163,6 +166,11 @@ class GuideDetailsVC: UITableViewController {
             let location = addPoint.pointLocation
             let address = addPoint.pointAddress
             
+            var imageName:String? = nil
+            if image != nil {
+                imageName = NSUUID().UUIDString + ".jpg"
+            }
+            
             // Create and save point
             let point = GuidePoint(name: ttl!,
                                    location: location!,
@@ -170,9 +178,9 @@ class GuideDetailsVC: UITableViewController {
                                    radius: Double(radius!)!,
                                    text: desc!,
                                    link: link!,
-                                   image: image)
+                                   imageName: imageName)
             
-            SightrModel.defaultModel.addPointToGuide(guide!, point: point)
+            SightrModel.defaultModel.addPointToGuide(guide!, point: point, image: image)
         }
     }
     
@@ -187,16 +195,21 @@ class GuideDetailsVC: UITableViewController {
             let location = editPoint.pointLocation
             let address = editPoint.pointAddress
             
-            // Create and save point
-            let data = GuidePoint(name: ttl!,
-                                   location: location!,
-                                   address: address,
-                                   radius: Double(radius!)!,
-                                   text: desc!,
-                                   link: link!,
-                                   image: image)
+            var imageName:String? = nil
+            if image != nil {
+                imageName = NSUUID().UUIDString + ".jpg"
+            }
             
-            SightrModel.defaultModel.updatePoint(self.guide!, point: self.selectedPoint!, data: data)
+            // Create and save point
+            let new = GuidePoint(name: ttl!,
+                                 location: location!,
+                                 address: address,
+                                 radius: Double(radius!)!,
+                                 text: desc!,
+                                 link: link!,
+                                 imageName: imageName)
+            
+            SightrModel.defaultModel.updatePoint(self.guide!, old: self.selectedPoint!, new: new, image: image)
             selectedPoint = nil
         }
     }
