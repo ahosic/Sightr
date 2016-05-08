@@ -4,11 +4,13 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'Sightr‘ do
-#pod 'SwiftyJSON', '~> 2.3'
 
-pod 'RealmSwift'
-pod 'GoogleMaps'
-pod 'ImageViewer'
+pod 'RealmSwift', '~> 0.98.8'
+pod 'GoogleMaps', '~> 1.13.0'
+pod 'ImageViewer', '~> 2.0'
+pod 'SwiftyJSON', '~> 2.3'
+pod 'SSZipArchive', '~> 1.1'
+pod 'SwiftSpinner', '~> 0.9.5'
 
 end
 

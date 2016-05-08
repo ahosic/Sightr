@@ -31,6 +31,7 @@
 		85F4F7251CCB7CFD009B0C9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F4F7241CCB7CFD009B0C9C /* Constants.swift */; };
 		85F4F72A1CCBCE1B009B0C9C /* MapTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F4F7291CCBCE1B009B0C9C /* MapTasks.swift */; };
 		85F4F72C1CCBFEE0009B0C9C /* EditPointVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F4F72B1CCBFEE0009B0C9C /* EditPointVC.swift */; };
+		85FFBDA11CDBA14D007F9A48 /* FileAccessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FFBDA01CDBA14D007F9A48 /* FileAccessModel.swift */; };
 		E9D24A4F0CD57ECFE336EA3C /* Pods_Sightr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B11C144631148E021A1D4A18 /* Pods_Sightr.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		85F4F7241CCB7CFD009B0C9C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		85F4F7291CCBCE1B009B0C9C /* MapTasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTasks.swift; sourceTree = "<group>"; };
 		85F4F72B1CCBFEE0009B0C9C /* EditPointVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPointVC.swift; sourceTree = "<group>"; };
+		85FFBDA01CDBA14D007F9A48 /* FileAccessModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileAccessModel.swift; sourceTree = "<group>"; };
 		B11C144631148E021A1D4A18 /* Pods_Sightr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sightr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B46FAA5002C97F441883DDB5 /* Pods-Sightr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sightr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Sightr/Pods-Sightr.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -227,6 +229,7 @@
 				85298F631CC9234D006DBE11 /* GuidePoint.swift */,
 				85EF4EEA1CD515FC004AF4A4 /* GeofencingModel.swift */,
 				85956BAE1CD60AEE00E94ABA /* NotificationModel.swift */,
+				85FFBDA01CDBA14D007F9A48 /* FileAccessModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				85298F681CC92FC7006DBE11 /* AddPointVC.swift in Sources */,
 				8518641F1CC620E700C74F62 /* Guide.swift in Sources */,
 				859F65671CC4EBC3001908B0 /* GuideCell.swift in Sources */,
+				85FFBDA11CDBA14D007F9A48 /* FileAccessModel.swift in Sources */,
 				85F4F72A1CCBCE1B009B0C9C /* MapTasks.swift in Sources */,
 				85298F641CC9234D006DBE11 /* GuidePoint.swift in Sources */,
 				851864211CC63B3A00C74F62 /* GuideDetailsVC.swift in Sources */,
