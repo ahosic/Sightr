@@ -19,11 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     /***********  Geofencing ***********/
     
     func showPointDetails(guideID: String, pointID:String) {
-        if let point = SightrModel.defaultModel.pointOfGuide(guideID, pointID: pointID) {
+        if let point = SightrModel.defaultModel.pointByID(guideID, pointID: pointID) {
             // Create ViewController instance
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let destination:PointDetailsVC = storyboard.instantiateViewControllerWithIdentifier("PointDetails") as! PointDetailsVC
             destination.point = point
+            destination.guideID = guideID
             
             let rootViewController = self.window!.rootViewController as! UINavigationController
             
