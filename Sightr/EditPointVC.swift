@@ -11,6 +11,7 @@ class EditPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContr
     @IBOutlet weak var pointRadius: UITextField!
     @IBOutlet weak var pointImage: UIImageView!
     
+    var guideID:String?
     var pointAddress:String?
     var pointLocation:CLLocationCoordinate2D?
     
@@ -31,8 +32,7 @@ class EditPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContr
         
         if (point?.hasImage)! {
             // Load image from image directory
-            let path = SightrModel.defaultModel.getImagesDirectory().stringByAppendingPathComponent((point?.id)! + ".jpg")
-            self.pointImage.image = UIImage(contentsOfFile: path)
+            self.pointImage.image = FileAccessModel.defaultModel.getImageForPoint(guideID!, imageName: (point?.imageName)!)
             
             self.imageCell.hidden = false
         }
