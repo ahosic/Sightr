@@ -31,6 +31,10 @@ class SightrModel {
     func createGuide(name:String) {
         // Save Guide
         let guide = Guide(name: name)
+        createGuide(guide)
+    }
+    
+    func createGuide(guide:Guide) {
         guides.append(guide)
         
         // Get Index of created Guide
@@ -80,15 +84,13 @@ class SightrModel {
         
         let guideID = guide.id
         var removedPoints = [NSString]()
+        
         // Remove images of points
         for point in guide.points {
-            if point.hasImage {
-                removeImageFromStorage(point.id)
-            }
-            
             removedPoints.append(point.id)
         }
         
+        FileAccessModel.defaultModel.removeGuideFromStorage(guideID)
         guides.removeAtIndex(index)
         
         // Remove from database
@@ -126,14 +128,14 @@ class SightrModel {
     
     /***********  Guide Points ***********/
     
-    func addPointToGuide(guide:Guide, point:GuidePoint){
+    func addPointToGuide(guide:Guide, point:GuidePoint, image:UIImage?){
         // Save to database
         let realm = try! Realm()
         try! realm.write{
             
             // Save image of point
-            if point.hasImage {
-                saveImageToStorage(point.id, image: point.image!)
+            if point.hasImage && image != nil {
+                FileAccessModel.defaultModel.saveImageToStorage(guide.id, imageName: point.imageName!, image: image!)
             }
             
             guide.points.append(point)
@@ -149,31 +151,35 @@ class SightrModel {
         }
     }
     
-    func updatePoint(guide:Guide, point:GuidePoint, data: GuidePoint){
-        if let idx = indexOfPoint(guide, point: point) {
+    func updatePoint(guide:Guide, old:GuidePoint, new: GuidePoint, image:UIImage?){
+        if let idx = indexOfPoint(guide, point: old) {
             // Save to database
             let realm = try! Realm()
             try! realm.write {
-                point.name = data.name
+                old.name = new.name
                 
-                point.address = data.address
-                point.radius = data.radius
+                old.address = new.address
+                old.radius = new.radius
                 
-                point.text = data.text
-                point.link = data.link
+                old.text = new.text
+                old.link = new.link
                 
-                point.location = data.location
+                old.location = new.location
                 
-                if data.hasImage {
-                    point.image = data.image
-                    point.hasImage = true
-                    saveImageToStorage(point.id, image: data.image!)
+                if new.hasImage && image != nil {
+                    
+                    if old.imageName == nil {
+                        old.imageName = new.imageName
+                    }
+                    
+                    old.hasImage = true
+                    FileAccessModel.defaultModel.saveImageToStorage(guide.id, imageName: old.imageName! , image: image!)
                 } else {
-                    point.image = nil
-                    point.hasImage = false
+                    old.imageName = nil
+                    old.hasImage = false
                 }
                 
-                guide.points[idx] = point
+                guide.points[idx] = old
             }
             
             // Update corresponding guide
@@ -194,7 +200,7 @@ class SightrModel {
         try! realm.write {
             // Remove image from storage
             if point.hasImage {
-                removeImageFromStorage(point.id)
+                FileAccessModel.defaultModel.removeImageFromStorage(guide.id, imageName: point.imageName!)
             }
             
             // Remove point
@@ -268,7 +274,7 @@ class SightrModel {
         return nil
     }
     
-    func pointOfGuide(guideID:String, pointID:String) -> GuidePoint? {
+    func pointByID(guideID:String, pointID:String) -> GuidePoint? {
         if let guide = guideByID(guideID) {
             if let pointIndex = indexOfPoint(guide, id: pointID) {
                 return guide.points[pointIndex]
@@ -276,47 +282,5 @@ class SightrModel {
         }
         
         return nil
-    }
-    
-    func saveImageToStorage(id:String, image: UIImage) {
-        if let img = UIImageJPEGRepresentation(image, 1.0) {
-            // Get file path
-            let file = getImagesDirectory().stringByAppendingPathComponent(id + ".jpg")
-            
-            // Write File
-            img.writeToFile(file, atomically: true)
-        }
-    }
-    
-    func removeImageFromStorage(id:String) {
-        // Get file path
-        let file = getImagesDirectory().stringByAppendingPathComponent(id + ".jpg")
-        do {
-            // Remove
-            try NSFileManager.defaultManager().removeItemAtPath(file)
-        } catch {
-            print("Removing image failed.")
-        }
-    }
-    
-    func getImagesDirectory() -> NSString {
-        // Generate file paths
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        let documentsDir:AnyObject = paths[0]
-        let appDir:AnyObject = documentsDir.stringByAppendingPathComponent("Sightr")
-        let imgDir = appDir.stringByAppendingPathComponent("points")
-        
-        do {
-            // Check, if directories already exist
-            if !NSFileManager.defaultManager().fileExistsAtPath(imgDir) {
-                // Create directories
-                try NSFileManager.defaultManager().createDirectoryAtPath(appDir as! String, withIntermediateDirectories: false, attributes: nil)
-                try NSFileManager.defaultManager().createDirectoryAtPath(imgDir, withIntermediateDirectories: false, attributes: nil)
-            }
-        } catch let error as NSError {
-            print(error.localizedDescription);
-        }
-        
-        return imgDir
     }
 }
