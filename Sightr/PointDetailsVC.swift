@@ -4,6 +4,7 @@ import GoogleMaps
 class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
     var point:GuidePoint?
+    var guideID:String?
     
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var mapView: GMSMapView!
@@ -34,8 +35,7 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         
         if (point?.hasImage)! {
             // Load image from image directory
-            let path = SightrModel.defaultModel.getImagesDirectory().stringByAppendingPathComponent((point?.id)! + ".jpg")
-            image.image = UIImage(contentsOfFile: path)
+            image.image = FileAccessModel.defaultModel.getImageForPoint(guideID!, imageName: (point?.imageName)!)
             image.hidden = false
             
             let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PointDetailsVC.imageTapped(_:)))
@@ -98,8 +98,7 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         var objectsToShare:NSArray = []
         if (point?.hasImage)! {
             // Load image from image directory
-            let path = SightrModel.defaultModel.getImagesDirectory().stringByAppendingPathComponent((point?.id)! + ".jpg")
-            if let image = UIImage(contentsOfFile: path) {
+            if let image = image.image {
                 objectsToShare = [textToShare, image]
             }
             
