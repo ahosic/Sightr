@@ -1,4 +1,5 @@
 import UIKit
+import SwiftSpinner
 
 class GuidesVC: UITableViewController {
     
@@ -76,13 +77,13 @@ class GuidesVC: UITableViewController {
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let share = UITableViewRowAction(style: .Normal, title: "Share", handler: {action, index in
-            print("Share")
+            self.shareGuide(index.row)
         })
         
         share.backgroundColor = UIColor(red: 199/255, green: 199/255, blue: 204/255, alpha: 1.0)
         
         let edit = UITableViewRowAction(style: .Normal, title: "Edit", handler: {action, index in
-            self.editGuide(indexPath.row)
+            self.editGuide(index.row)
         })
         
         edit.backgroundColor = UIColor(red: 255/255, green: 149/255, blue: 0/255, alpha: 1.0)
@@ -211,4 +212,44 @@ class GuidesVC: UITableViewController {
         // Show alert
         presentViewController(alertController, animated: true, completion: nil)
     }
+    
+    func shareGuide(index:Int) {
+        SwiftSpinner.setTitleFont(UIFont(name: "Quicksand-Regular", size: 20.0))
+        SwiftSpinner.show("Preparing for share", animated: true)
+        
+        let guide = SightrModel.defaultModel.guides[index]
+        let fileUrl = FileAccessModel.defaultModel.serializeGuide(guide)
+        
+        delay(seconds: 2.0, fileURL: fileUrl) { fileURL in
+            SwiftSpinner.hide()
+            
+            if let fileURL = fileURL {
+                dispatch_async(dispatch_get_main_queue()){
+                    
+                    // Initialize ActivityViewController
+                    let airDropController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+                    
+                    // Exclude Activity Types
+                    airDropController.excludedActivityTypes = [UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypePostToWeibo, UIActivityTypePrint, UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll, UIActivityTypePostToFlickr, UIActivityTypePostToTencentWeibo, UIActivityTypeMail]
+                    
+                    // Show
+                    self.presentViewController(airDropController, animated: true) {
+                        self.tableView.setEditing(false, animated: true)
+                        
+                        // Only for testing purposes
+                        FileAccessModel.defaultModel.deserializeGuide(fileURL)
+                    }
+                }
+            }
+        }
+    }
+    
+    func delay(seconds seconds: Double, fileURL:NSURL?, completion:(NSURL?)->()) {
+        let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * seconds ))
+        
+        dispatch_after(popTime, dispatch_get_main_queue()) {
+            completion(fileURL)
+        }
+    }
+    
 }
