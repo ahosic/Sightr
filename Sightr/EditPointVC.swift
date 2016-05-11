@@ -103,8 +103,15 @@ class EditPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContr
     /***********  Helper methods ***********/
     
     func showPlacePicker() {
-        // Configure place picker
-        let center = point?.location //CLLocationCoordinate2DMake(48.306173, 14.286371)
+        tableView.endEditing(true)
+        
+        // Set center location
+        var center = point?.location
+        if pointLocation != nil {
+            center = pointLocation!
+        }
+        
+        // Configure place pickerxs
         let northEast = CLLocationCoordinate2DMake(center!.latitude + 0.001, center!.longitude + 0.001)
         let southWest = CLLocationCoordinate2DMake(center!.latitude - 0.001, center!.longitude - 0.001)
         let viewport = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
@@ -134,6 +141,8 @@ class EditPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContr
         imagePickerOptions.addAction(takeAction)
         imagePickerOptions.addAction(chooseAction)
         imagePickerOptions.addAction(cancelAction)
+        
+        tableView.endEditing(true)
         
         // Show
         self.presentViewController(imagePickerOptions, animated: true, completion: nil)
