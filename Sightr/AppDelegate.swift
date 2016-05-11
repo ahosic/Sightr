@@ -2,6 +2,7 @@ import UIKit
 import CoreData
 import GoogleMaps
 import CoreLocation
+import SwiftSpinner
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
@@ -11,9 +12,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     /***********  UTI ***********/
     
-    func importFromURL(url:NSURL) -> NSData? {
-        let data = NSData(contentsOfURL: url)
-        return data
+    func importFromURL(url:NSURL) {
+        if let ext = url.pathExtension {
+            if ext == "sightr" {
+                SwiftSpinner.setTitleFont(UIFont(name: "Quicksand-Regular", size: 20.0))
+                SwiftSpinner.show("Importing Guide", animated: true)
+                
+                // Import Guide
+                FileAccessModel.defaultModel.deserializeGuide(url)
+                
+                SwiftSpinner.hide()
+            }
+        }
     }
     
     /***********  Geofencing ***********/
@@ -59,6 +69,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         UITabBar.appearance().tintColor = UIColor(red: 84/255, green: 225/255, blue: 214/255, alpha: 1.0)
         
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        return true
+    }
+    
+    func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+        importFromURL(url)
+        return true
+    }
+    
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        importFromURL(url)
         return true
     }
     
