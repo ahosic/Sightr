@@ -72,8 +72,6 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     }
     
     func linkTapped(sender:UITapGestureRecognizer){
-        print("tapped")
-        
         var link = (point?.link)!
         
         if !link.hasPrefix("http://") && !link.hasPrefix("https://") {
@@ -81,9 +79,6 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         }
         
         if let url = NSURL(string: link ) {
-            
-            
-            
             UIApplication.sharedApplication().openURL(url)
         }
     }
