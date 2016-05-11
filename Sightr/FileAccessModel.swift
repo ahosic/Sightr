@@ -16,6 +16,8 @@ class FileAccessModel {
     let fileExtension = ".sightr"
     let dataFileName = "data.json"
     
+    /*********** Serialization methods ***********/
+    
     func serializeGuide(guide:Guide) -> NSURL?{
         // Serialize guide
         let json = guide.toJSON()
@@ -48,7 +50,7 @@ class FileAccessModel {
         // Check, if file exists
         if let zipPath = url.path {
             if NSFileManager.defaultManager().fileExistsAtPath(zipPath) {
-                let guidesDir:AnyObject = getDocumentsDirectory().stringByAppendingPathComponent("guides")
+                let guidesDir:AnyObject = getOrCreateDirectory(getDocumentsDirectory().stringByAppendingPathComponent("guides"))
                 
                 // Extract filename
                 let fileName = (url.absoluteString as NSString).lastPathComponent
@@ -56,6 +58,7 @@ class FileAccessModel {
                 
                 // Get temporary directory
                 let temp:AnyObject = getTemporaryDirectory().stringByAppendingPathComponent(fileNameArr[0])
+                //let tempDir = getOrCreateDirectory(temp)
                 
                 // Unzip archive
                 SSZipArchive.unzipFileAtPath(zipPath, toDestination: temp as! String, progressHandler: nil){
@@ -67,12 +70,14 @@ class FileAccessModel {
                         // Create Object from JSON
                         let guide = Guide(data: data)
                         
+                        let guideDir:AnyObject = self.getOrCreateDirectory(guidesDir.stringByAppendingPathComponent(guide.id))
+                        
                         // Move content of guide to destination
                         for point in guide.points {
                             if point.hasImage && point.imageName != nil {
                                 // Generate paths
                                 let srcPath:AnyObject = temp.stringByAppendingPathComponent((point.imageName)!)
-                                let destPath:AnyObject  = self.getOrCreateDirectory(guidesDir.stringByAppendingPathComponent(guide.id)).stringByAppendingPathComponent((point.imageName)!)
+                                let destPath:AnyObject  = guideDir.stringByAppendingPathComponent((point.imageName)!)
                                 
                                 
                                 // Move file
@@ -93,6 +98,8 @@ class FileAccessModel {
             }
         }
     }
+    
+    /*********** File Operation methods ***********/
     
     func saveImageToStorage(guideID:String, imageName:String, image: UIImage) {
         if let img = UIImageJPEGRepresentation(image, 1.0) {
@@ -140,6 +147,8 @@ class FileAccessModel {
         return image
     }
     
+    /*********** Getting directories ***********/
+    
     func getOrCreateDirectory(dir:AnyObject) -> AnyObject{
         do {
             // Check, if directories already exist
@@ -169,13 +178,12 @@ class FileAccessModel {
     func getDocumentsDirectory() -> AnyObject {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let documentsDir:AnyObject = paths[0]
-        print(documentsDir)
         return documentsDir
     }
     
     func getGuideDirectory(guideID:String) -> AnyObject {
         let appDir:AnyObject = getDocumentsDirectory().stringByAppendingPathComponent("guides")
-        let guideDir = appDir.stringByAppendingPathComponent(guideID)
+        let guideDir = getOrCreateDirectory(appDir).stringByAppendingPathComponent(guideID)
         
         let dir = getOrCreateDirectory(guideDir)
         return dir
