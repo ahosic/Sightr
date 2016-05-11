@@ -1,16 +1,11 @@
 import UIKit
 import GoogleMaps
+import Agrume
 
 class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
-    var point:GuidePoint?
     var guideID:String?
-    
-    @IBOutlet weak var scroll: UIScrollView!
-    @IBOutlet weak var mapView: GMSMapView!
-    
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var pointDesc: UITextView!
+    var point:GuidePoint?
     
     let locationManager = CLLocationManager()
     var didFindMyLocation = false
@@ -20,42 +15,23 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     let markerImage = UIImage(named: "Pin")
     let markerAnchor = CGPoint(x: 0.25925925925926, y: 1.0)
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Set Point data
-        self.title = point?.name
-        pointDesc.text = point?.text
-        
-        if let link = point?.link {
-            if link != ""{
-                pointDesc.text = pointDesc.text + "\n\nLink: " + link
-            }
-        }
-        
-        if (point?.hasImage)! {
-            // Load image from image directory
-            image.image = FileAccessModel.defaultModel.getImageForPoint(guideID!, imageName: (point?.imageName)!)
-            image.hidden = false
-            
-            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PointDetailsVC.imageTapped(_:)))
-            image.userInteractionEnabled = true
-            image.addGestureRecognizer(tapGestureRecognizer)
-        }
-        
-        // Adjust size of textview to actual length of text
-        let descWidth = self.pointDesc.frame.size.width
-        let newSize = self.pointDesc.sizeThatFits(CGSize(width: descWidth, height: CGFloat.max))
-        
-        var newFrame = self.pointDesc.frame
-        newFrame.size = CGSize(width: max(newSize.width, descWidth), height: newSize.height)
-        self.pointDesc.frame = newFrame;
-        self.pointDesc.scrollEnabled = false
-        
-        // Set scroll View
-        scroll.contentSize = self.view.frame.size
-        scroll.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-    }
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView!
+    
+    @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var addressContainer: UIView!
+    @IBOutlet weak var imageContainer: UIView!
+    @IBOutlet weak var linkContainer: UIView!
+    
+    @IBOutlet weak var titleContainer: UIVisualEffectView!
+    @IBOutlet weak var pointTitle: UILabel!
+    @IBOutlet weak var pointText: UITextView!
+    @IBOutlet weak var pointAddress: UILabel!
+    @IBOutlet weak var pointLink: UILabel!
+    @IBOutlet weak var pointImage: UIImageView!
+    
+    @IBOutlet weak var contentHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,13 +40,18 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         locationManager.requestAlwaysAuthorization()
         
         mapView.delegate = self
+        
+        provideData()
+        fitContent()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Set point location
-        self.addLocationMarker((point?.location)!)
+        if self.point != nil{
+            // Set point location
+            self.addLocationMarker((point?.location)!)
+        }
     }
     
     /***********  Delegate methods ***********/
@@ -84,6 +65,27 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     /***********  Actions ***********/
     
     func imageTapped(img:AnyObject) {
+        if let image = pointImage.image {
+            let agrume = Agrume(image: image)
+            agrume.showFrom(self)
+        }
+    }
+    
+    func linkTapped(sender:UITapGestureRecognizer){
+        print("tapped")
+        
+        var link = (point?.link)!
+        
+        if !link.hasPrefix("http://") && !link.hasPrefix("https://") {
+            link = "http://" + link
+        }
+        
+        if let url = NSURL(string: link ) {
+            
+            
+            
+            UIApplication.sharedApplication().openURL(url)
+        }
     }
     
     @IBAction func share(sender: AnyObject) {
@@ -98,7 +100,7 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         var objectsToShare:NSArray = []
         if (point?.hasImage)! {
             // Load image from image directory
-            if let image = image.image {
+            if let image = pointImage.image {
                 objectsToShare = [textToShare, image]
             }
             
@@ -109,6 +111,7 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         let activity = UIActivityViewController(activityItems: objectsToShare as [AnyObject], applicationActivities: nil)
         self.presentViewController(activity, animated: true, completion: nil)
     }
+    
     /***********  Helper methods ***********/
     
     func addLocationMarker(location:CLLocationCoordinate2D){
@@ -135,5 +138,70 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         circle.strokeWidth = 1
         
         circle.map = mapView;
+    }
+    
+    func provideData() {
+        if self.point != nil {
+            pointTitle.text = (point?.name)!
+            pointText.text = point?.text
+            
+            if let addr = point?.address {
+                pointAddress.text = addr
+            } else {
+                pointAddress.text = "Not available"
+            }
+            
+            if let link = point?.link {
+                if link != "" {
+                    pointLink.text = link
+                    
+                    pointLink.userInteractionEnabled = true
+                    pointLink.textColor = UIColor(red: 84/255, green: 225/255, blue: 214/255, alpha: 1.0)
+                    
+                    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(PointDetailsVC.linkTapped(_:)))
+                    pointLink.addGestureRecognizer(tapGesture)
+                } else {
+                    pointLink.text = "Not provided"
+                }
+            } else {
+                pointLink.text = "Not provided"
+            }
+            
+            if (point?.hasImage)! {
+                // Load image from image directory
+                pointImage.image = FileAccessModel.defaultModel.getImageForPoint(guideID!, imageName: (point?.imageName)!)
+                
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PointDetailsVC.imageTapped(_:)))
+                pointImage.userInteractionEnabled = true
+                pointImage.addGestureRecognizer(tapGestureRecognizer)
+            }
+        }
+    }
+    
+    func fitContent() {
+        // Calculate Height of Text
+        let currentSize = pointText.frame.size
+        let textContentHeight = pointText.contentSize.height
+        let textSize = pointText.sizeThatFits(CGSizeMake(currentSize.width, textContentHeight))
+        
+        // Calculate total height of content
+        var contentHeight = mapView.frame.size.height + addressContainer.frame.size.height + linkContainer.frame.size.height + textSize.height
+        
+        if pointImage.image == nil {
+            contentHeight -= imageContainer.frame.size.height
+            imageContainer.hidden = true
+        }
+        
+        // Update Height constraints
+        textHeightConstraint.constant = textSize.height
+        contentHeightConstraint.constant = contentHeight
+        
+        // Update ScrollView
+        scrollView.contentSize = contentView.frame.size
+        scrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        
+        let height = titleContainer.frame.size.height
+        self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0,
+                                            bottom: height, right: 0)
     }
 }
