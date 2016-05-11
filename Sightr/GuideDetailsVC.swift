@@ -26,6 +26,10 @@ class GuideDetailsVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0);
+        self.tableView.contentInset = adjustForTabbarInsets;
+        self.tableView.scrollIndicatorInsets = adjustForTabbarInsets;
+        
         // Add observers
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GuideDetailsVC.update(_:)), name: ModelNotification.PointsChanged, object: nil)
     }
