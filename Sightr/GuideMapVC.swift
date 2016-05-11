@@ -80,6 +80,11 @@ class GuideMapVC: UIViewController {
             locationMarker.groundAnchor = markerAnchor
             locationMarker.opacity = 0.87
             
+            locationMarker.title = point.name
+            locationMarker.snippet = point.address
+            locationMarker.infoWindowAnchor = CGPointMake(markerAnchor.x, 0.0)
+            
+            
             // Draw the notification area
             let circle = GMSCircle(position: point.location, radius: point.radius)
             
