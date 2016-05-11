@@ -20,10 +20,6 @@ class AddPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContro
     var placePicker:GMSPlacePicker?
     let locationManager = CLLocationManager()
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -96,8 +92,15 @@ class AddPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContro
     /***********  Helper methods ***********/
     
     func showPlacePicker() {
+        tableView.endEditing(true)
+        
+        // Set center location
+        var center = CLLocationCoordinate2DMake(48.306173, 14.286371)
+        if pointLocation != nil {
+            center = pointLocation!
+        }
+        
         // Configure place picker
-        let center = CLLocationCoordinate2DMake(48.306173, 14.286371)
         let northEast = CLLocationCoordinate2DMake(center.latitude + 0.001, center.longitude + 0.001)
         let southWest = CLLocationCoordinate2DMake(center.latitude - 0.001, center.longitude - 0.001)
         let viewport = GMSCoordinateBounds(coordinate: northEast, coordinate: southWest)
@@ -127,6 +130,8 @@ class AddPointVC: UITableViewController, UITextViewDelegate, UIImagePickerContro
         imagePickerOptions.addAction(takeAction)
         imagePickerOptions.addAction(chooseAction)
         imagePickerOptions.addAction(cancelAction)
+        
+        tableView.endEditing(true)
         
         // Show
         self.presentViewController(imagePickerOptions, animated: true, completion: nil)
