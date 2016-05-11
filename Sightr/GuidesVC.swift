@@ -230,14 +230,20 @@ class GuidesVC: UITableViewController {
                     let airDropController = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
                     
                     // Exclude Activity Types
-                    airDropController.excludedActivityTypes = [UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypePostToWeibo, UIActivityTypePrint, UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll, UIActivityTypePostToFlickr, UIActivityTypePostToTencentWeibo, UIActivityTypeMail]
+                    airDropController.excludedActivityTypes = [UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypePostToWeibo, UIActivityTypeMessage, UIActivityTypePrint, UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll, UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo, UIActivityTypeMail]
+                    
+                    airDropController.completionWithItemsHandler = {
+                        (activityType, completed:Bool, returnedItems:[AnyObject]?, error: NSError?) in
+                        
+                        if let zipPath = fileURL.path {
+                            // Delete prepared Sightr archive
+                            FileAccessModel.defaultModel.removeFileOrDirectory(zipPath)
+                        }
+                    }
                     
                     // Show
                     self.presentViewController(airDropController, animated: true) {
                         self.tableView.setEditing(false, animated: true)
-                        
-                        // Only for testing purposes
-                        FileAccessModel.defaultModel.deserializeGuide(fileURL)
                     }
                 }
             }
