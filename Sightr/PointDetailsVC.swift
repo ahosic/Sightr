@@ -33,6 +33,8 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     @IBOutlet weak var contentHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
     
+    var addedMarker = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,9 +50,10 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        if self.point != nil{
+        if self.point != nil && !addedMarker{
             // Set point location
             self.addLocationMarker((point?.location)!)
+            addedMarker = true
         }
     }
     
