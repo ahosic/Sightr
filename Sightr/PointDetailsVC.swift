@@ -44,7 +44,6 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         mapView.delegate = self
         
         provideData()
-        fitContent()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -55,6 +54,11 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
             self.addLocationMarker((point?.location)!)
             addedMarker = true
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        fitContent()
     }
     
     /***********  Delegate methods ***********/
@@ -178,15 +182,14 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
     
     func fitContent() {
         // Calculate Height of Text
-        let currentSize = pointText.frame.size
-        let textContentHeight = pointText.contentSize.height
-        let textSize = pointText.sizeThatFits(CGSizeMake(currentSize.width, textContentHeight))
+        let textWidth = pointText.frame.size.width
+        let textSize = pointText.sizeThatFits(CGSize(width: textWidth, height: CGFloat.max))
         
         // Calculate total height of content
-        var contentHeight = mapView.frame.size.height + addressContainer.frame.size.height + linkContainer.frame.size.height + textSize.height
+        var contentHeight = mapView.frame.size.height + addressContainer.frame.size.height + linkContainer.frame.size.height + textSize.height + imageContainer.frame.size.height + 32
         
         if pointImage.image == nil {
-            contentHeight -= imageContainer.frame.size.height
+            contentHeight -= imageContainer.frame.size.height - 32
             imageContainer.hidden = true
         }
         
@@ -194,10 +197,7 @@ class PointDetailsVC: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         textHeightConstraint.constant = textSize.height
         contentHeightConstraint.constant = contentHeight
         
-        // Update ScrollView
-        scrollView.contentSize = contentView.frame.size
-        scrollView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        
+        // Set padding to display 'Google'-Logo in Map
         let height = titleContainer.frame.size.height
         self.mapView.padding = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0,
                                             bottom: height, right: 0)

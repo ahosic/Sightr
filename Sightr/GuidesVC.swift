@@ -215,7 +215,7 @@ class GuidesVC: UITableViewController {
     
     func shareGuide(index:Int) {
         SwiftSpinner.setTitleFont(UIFont(name: "Quicksand-Regular", size: 20.0))
-        SwiftSpinner.show("Preparing for share", animated: true)
+        SwiftSpinner.show("Preparing for sharing", animated: true)
         
         let guide = SightrModel.defaultModel.guides[index]
         let fileUrl = FileAccessModel.defaultModel.serializeGuide(guide)
